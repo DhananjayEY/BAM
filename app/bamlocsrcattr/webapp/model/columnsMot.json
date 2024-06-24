@@ -1,0 +1,12 @@
+{
+	"cols": [
+		{
+			"label": "Mode of Transportation ID",
+			"template": "MoT",
+			"width": "10rem"
+		}, {
+			"label": "Product Description",
+			"template": "Bezei"
+		}
+	]
+}

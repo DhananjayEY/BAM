@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:u="sap.ui.unified" xmlns:t="sap.ui.table" xmlns:m="sap.m"
+	xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core" xmlns:ci="com.ey.bamlocsrcattr.controls">
+	<ValueHelpDialog title="{i18n>LOCFR}" ok="onLocFromOk" cancel="onLocFromCancel" afterClose="onLocFromAfterClose" supportRanges="true"
+		key="Locno_From" descriptionKey="Locfromdesc" supportMultiselect="true">
+		<filterBar>
+			<fb:FilterBar header="Search" search="onLocFromSearch" showClearButton="true" showFilterConfiguration="false">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="G1" groupTitle="LocationFrom" name="E" label="{i18n>LOCFR}" visibleInFilterBar="true">
+						<fb:control>
+							<ci:MultiInput id="Locno_From" name="Locno_From" placeholder="Enter {i18n>LOCFR}" showValueHelp="false"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G1" groupTitle="LocationFrom " name="F" label="{i18n>LOCFRDESC}" visibleInFilterBar="true">
+						<fb:control>
+							<m:MultiInput id="Locfromdesc" name="Locfromdesc" placeholder="Enter {i18n>LOCFRDESC}" showValueHelp="false"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>

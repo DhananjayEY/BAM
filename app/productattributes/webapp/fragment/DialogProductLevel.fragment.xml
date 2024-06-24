@@ -1,0 +1,36 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:u="sap.ui.unified" xmlns:t="sap.ui.table" xmlns:m="sap.m"
+	xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core" xmlns:ci="com.ey.productattributes.controls">
+	<ValueHelpDialog title="Product level" ok="onPrdLvlF4Ok" cancel="onPrdLvlF4Cancel" afterClose="onPrdLvlF4AfterClose" supportRanges="false"
+		key="Prctr" descriptionKey="PrctrDesc">
+		<filterBar>
+			<fb:FilterBar header="Search" search="onPrdLvlF4FltSrch" filtersDialogClosed="onPrdLvlF4FltX" showClearButton="true" showFilterConfiguration="false">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="G1" groupTitle="Product Level" name="E" label="Product Level" visibleInFilterBar="true" mandatory="true">
+						<fb:control>
+							<m:ActionSelect id="idPrdLvl" name="ProdLvl">
+								<core:Item text="Please Select"/>
+								<core:Item key="LEVEL5" text="Portfolio"/>
+								<core:Item key="LEVEL6" text="Crop / Active"/>
+								<core:Item key="LEVEL7" text="Sub-crop / Formulation"/>
+								<core:Item key="LEVEL8" text="Trait Segment / Trade Product"/>
+								<!--<core:Item key="LEVEL9" text="Product ID"/>-->
+							</m:ActionSelect>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G1" groupTitle="Product Level " name="F" label="Product Level ID" visibleInFilterBar="true">
+						<fb:control>
+							<ci:MultiInput id="idPrdLvlID" name="ProdLvlID" change="onMatnr1SelectChange" placeholder="Enter Product Level ID"
+							showValueHelp="false" />
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G1" groupTitle="Product Level" name="C" label="Product Level ID Desc" visibleInFilterBar="true">
+						<fb:control>
+							<m:MultiInput id="idPrdLvlDscr" name="ProdLvlDes" value="" change="onMatnr1SelectChange" placeholder="Enter ProductLevelDescription"
+								liveChange="ProductLevelDescription" showValueHelp="false"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>

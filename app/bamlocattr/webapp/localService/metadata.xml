@@ -1,0 +1,31 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZBAM_SUPP_LOCATION_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="ZBAM_SUPP_LOCATION" sap:content-version="1">
+				<Key><PropertyRef Name="Logsys"/><PropertyRef Name="Locno"/></Key><Property Name="Logsys" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Logical system"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Locno" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Location" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Zagloctype" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Supply Loc. Type"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Zsupplylocplatform" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Sup. Loc. Platform"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Zsupplyactivity" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Sup. Act. Type"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Zsupplyregionid" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Supply Region ID"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Zsupplyregiondesc" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Sup. Reg Description"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/></EntityType>
+			<EntityType Name="ZBAM_LOCATION_SEARCH" sap:content-version="1">
+				<Key><PropertyRef Name="Logsys"/><PropertyRef Name="Locno"/></Key><Property Name="Logsys" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Logical system"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Locno" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Location" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Zagloctype" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Supply Loc. Type"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/></EntityType>
+			<EntityType Name="ZBAM_SUPPLY_HCD_SEARCH" sap:content-version="1">
+				<Key><PropertyRef Name="ParamName"/></Key><Property Name="ParamName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="BAM ATTR NAME"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="ParamValue" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="BAM ATTR VALUE"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ParamText" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="BAM ATTR TEXT"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/></EntityType>
+			<EntityContainer Name="ZBAM_SUPP_LOCATION_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="ZBAM_SUPP_LOCATIONSet" EntityType="ZBAM_SUPP_LOCATION_SRV.ZBAM_SUPP_LOCATION" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="ZBAM_LOCATION_SEARCHSet" EntityType="ZBAM_SUPP_LOCATION_SRV.ZBAM_LOCATION_SEARCH" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="ZBAM_SUPPLY_HCD_SEARCHSet" EntityType="ZBAM_SUPP_LOCATION_SRV.ZBAM_SUPPLY_HCD_SEARCH" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/></EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZBAM_SUPP_LOCATION_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZBAM_SUPP_LOCATION_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

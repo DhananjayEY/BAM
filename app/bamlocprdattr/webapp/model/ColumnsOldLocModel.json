@@ -1,0 +1,12 @@
+{
+	"cols": [
+		{
+			"label": "Old Location ID",
+			"template": "Locno",
+			"width": "10rem"
+		}, {
+			"label": "Old Location Description",
+			"template": "Name1"
+		}
+	]
+}

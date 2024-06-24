@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:u="sap.ui.unified" xmlns:t="sap.ui.table" xmlns:m="sap.m"
+	xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core" xmlns:ci="com.ey.bamlocprdattr.controls">
+	<ValueHelpDialog title="Aggregate Location" ok="onGeoLvlF4Ok2" cancel="onGeoLvlF4Cancel2" afterClose="onGeoLvlF4AfterClose2" supportRanges="true" 
+	supportMultiselect="true" key="Locno" descriptionKey="Name1">
+		<filterBar>
+			<fb:FilterBar header="Search" search="onGeoLvlF4FltSrch2" filtersDialogClosed="onGeoLvlF4FltX2" showClearButton="true"
+				showFilterConfiguration="false">	
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="G1" groupTitle="Location" name="E" label="Agg. Location" visibleInFilterBar="true">
+						<fb:control>
+							<ci:MultiInput id="idGeoLvlID2" name="Locno"  placeholder="Enter Agg. Location" showValueHelp="false"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G1" groupTitle="Location" name="F" label="Agg. Location Description" visibleInFilterBar="true">
+						<fb:control>
+							<m:MultiInput id="idGeoLvlDscr2" name="Name1" value="" placeholder="Enter Agg. Location Description" showValueHelp="false"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>

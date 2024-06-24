@@ -1,0 +1,12 @@
+{
+	"cols": [
+		{
+			"label": "Product ID",
+			"template": "Matnr",
+			"width": "10rem"
+		}, {
+			"label": "Product Description",
+			"template": "Maktx"
+		}
+	]
+}

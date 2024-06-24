@@ -1,0 +1,12 @@
+{
+	"cols": [
+		{
+			"label": "Location ID",
+			"template": "LocID",
+			"width": "10rem"
+		}, {
+			"label": "Supply Location Description",
+			"template": "Name1"
+		}
+	]
+}

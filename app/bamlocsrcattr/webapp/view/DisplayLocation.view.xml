@@ -1,0 +1,103 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	controllerName="com.ey.bamlocsrcattr.controller.DisplayLocation" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page navButtonPress="onNavBack" showNavButton="true" title="{i18n>DisplayLocSrc}" >
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Button type="Back" press="onNavBack" visible="{flpCheck>/isRunningOnFlp}"/>
+				</contentLeft>
+				<contentMiddle>
+					<Text text="{i18n>DisplayLocSrc}"/>
+				</contentMiddle>
+				<contentRight>
+					<ActionSelect items='{DisplayModel>/results}' change="onSelectionChange">
+						<core:Item text="{DisplayModel>Matnr}--{DisplayModel>LocnoFrom}"/>
+					</ActionSelect>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<f:Form id="idSelectedObj" editable="true">
+				<f:layout>
+					<f:ColumnLayout columnsM="1" columnsL="2" columnsXL="3"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer >
+						<f:formElements>
+							<f:FormElement label="{i18n>LOCFR}" id="idLocfr">
+								<f:fields>
+									<Text text="{DisplayModel>LocnoFrom}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>OLDFROM}" id="idOldfrom">
+								<f:fields>
+									<Text text="{DisplayModel>Sort1}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>LOCID}" id="idLocid">
+								<f:fields>
+									<Text text="{DisplayModel>LocnoTo}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>OLDLOCATION}" id="idOldlocation">
+								<f:fields>
+									<Text text="{DisplayModel>Sort2}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>MOTID}" id="idMotid">
+								<f:fields>
+									<Text text="{DisplayModel>MotId}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>PRDID}" id="idPrdid">
+								<f:fields>
+									<Text text="{= ${DisplayModel>Matnr} + ' - ' + ${DisplayModel>Maktx} }"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ZFROZENHORIZONTRECEIPT}" id="idFrozenreceipt">
+								<f:fields>
+									<Text text="{DisplayModel>Zfrozenhorizontreceipt}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ZTRANSPORTATIONCONST}" id="idTranportConst">
+								<f:fields>
+									<Text text="{DisplayModel>Ztransportationconst}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ZTRANSPORTATIONCONSTAPS}" id="idApsTranportConst">
+								<f:fields>
+									<Text text="{DisplayModel>ZtransportationconstAps}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>TLEADTIME}" id="idLeadtime">
+								<f:fields>
+									<Text text="{DisplayModel>Ztleadtime}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ZAPSTLANEOVRD}" id="idApsoveride">
+								<f:fields>
+									<Text text="{DisplayModel>Zapstlaneovrd}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>TMAXLOTSIZE}" id="idMaxlotsize">
+								<f:fields>
+									<Text text="{DisplayModel>Ztmaxlotsize}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>TMINLOTSIZE}" id="idTminlotsize">
+								<f:fields>
+									<Text text="{DisplayModel>Ztminlotsize}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>TROUNDING}" id="idTrounding">
+								<f:fields>
+									<Text text="{DisplayModel>Ztrounding}"></Text>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</content>
+	</Page>
+</mvc:View>

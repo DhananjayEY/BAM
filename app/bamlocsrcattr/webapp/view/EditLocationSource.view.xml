@@ -1,0 +1,110 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.ey.bamlocsrcattr.controller.EditLocationSource" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page navButtonPress="onNavBack" showNavButton="true" showHeader="{flpCheck>/isRunningOnFlp}">
+		<content>
+			<!--<Text id="lblPeopleRuleText" text="curuleedit" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom pageHeaderFont boldFont"/>-->
+			<!--<Text id="lblPeopleRuleCount" text="2" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom pageHeaderFont boldFont"/>-->
+			<f:Form editable="true" id="formEditLocationSource" title="{i18n>EditSelectedText}{oModel>/count}">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanL="3" adjustLabelSpan="false" columnsXL="12" columnsL="12" columnsM="12" singleContainerFullSize="true"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer title="{i18n>EditSubTitle}" id="fConEditPeopleRules">
+						<f:formElements>
+							<f:FormElement label="{i18n>ZFROZENHORIZONTRECEIPT}" id="transportReceipt">
+								<FlexBox renderType="Bare">
+									<Input 
+										width="25%" 
+										id="inputReceipt" 
+										value="{oModel>/TransportReceipt}" 
+										liveChange="onLiveChange"
+										placeholder="{i18n>ZFROZENHORIZONTRECEIPT}" />
+								</FlexBox>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ZTRANSPORTATIONCONST}" id="transportCost">
+								<FlexBox renderType="Bare">
+									<!--<Input width="25%" id="inputTransport" value="{oModel>/Rules/0/BusiLeadName}" valueHelpOnly="false" liveChange="onChange"
+										placeholder="{i18n>ZTRANSPORTATIONCONST}" showValueHelp="true" valueHelpRequest="onValueHelpUser"/>-->
+									<ActionSelect id="inputTransport" selectedKey="{oModel>/TransportConstkey}" items="{oModel>/TransportConst}" change="onChange">
+										<!--change="onChange"-->
+										<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue}-{oModel>ParamText}"/>
+										<layoutData>
+											<l:GridData span="XL1 L2 M2 S4"/>
+										</layoutData>
+									</ActionSelect>
+								</FlexBox>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ZTRANSPORTATIONCONSTAPS}" id="apsTransportCost">
+								<FlexBox renderType="Bare">
+									<ActionSelect id="inputApsTransport" selectedKey="{oModel>/ApsTransportConstkey}" items="{oModel>/TransportConst}" change="onChange">
+										<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue}-{oModel>ParamText}"/>
+										<layoutData>
+											<l:GridData span="XL1 L2 M2 S4"/>
+										</layoutData>
+									</ActionSelect>
+								</FlexBox>
+							</f:FormElement>
+							<f:FormElement label="{i18n>TLEADTIME}" id="leadTime">
+								<FlexBox renderType="Bare">
+									<Input 
+										width="25%" 
+										id="inputLeadTime" 
+										value="{oModel>/Ztleadtime}" 
+										placeholder="{i18n>TLEADTIME}" 
+										liveChange="onLiveChange" />
+								</FlexBox>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ZAPSTLANEOVRD}" id="tLaneOvrd">
+								<FlexBox renderType="Bare">
+									<!--<Input width="25%" id="inputLaneOvrd" value="{oModel>/Zapstlaneovrd}" type="Number" placeholder="{i18n>ZAPSTLANEOVRD}" change="onChange"/>-->
+									<ActionSelect 
+										id="inputLaneOvrd" 
+										selectedKey="{oModel>/Zapstlaneovrd}" 
+										items="{path:'oModel>/TLaneOverRide', templateShareable:true}" >
+										<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue}-{oModel>ParamText}"/>
+									</ActionSelect>
+								</FlexBox>
+							</f:FormElement>
+							<f:FormElement label="{i18n>TMAXLOTSIZE}" id="maxlotSize">
+								<FlexBox renderType="Bare">
+									<Input 
+										width="25%" 
+										id="inputmaxLotSize"
+										value="{oModel>/Ztmaxlotsize}" 
+										placeholder="{i18n>TMAXLOTSIZE}" 
+										liveChange="onLiveChange" />
+								</FlexBox>
+							</f:FormElement>
+							<f:FormElement label="{i18n>TMINLOTSIZE}" id="minlotSize">
+								<FlexBox renderType="Bare">
+									<Input 
+										width="25%" 
+										id="inputMinLotSize" 
+										value="{oModel>/Ztminlotsize}" 
+										placeholder="{i18n>TMINLOTSIZE}" 
+										liveChange="onLiveChange" />
+								</FlexBox>
+							</f:FormElement>
+							<f:FormElement label="{i18n>TROUNDING}" id="rounding">
+								<FlexBox renderType="Bare">
+									<Input 
+										width="25%" 
+										id="inputRounding" 
+										value="{oModel>/Ztrounding}" 
+										placeholder="{i18n>TROUNDING}" 
+										liveChange="onLiveChange" />
+								</FlexBox>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+			<Toolbar width="100%" id="toolBarSubmit">
+				<content>
+					<ToolbarSpacer/>
+					<Button type="Emphasized" text="{i18n>Submit}" width="100px" id="buttonSubmit" press="onSubmit"/>
+				</content>
+			</Toolbar>
+		</content>
+	</Page>
+</mvc:View>

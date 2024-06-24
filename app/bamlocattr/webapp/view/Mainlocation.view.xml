@@ -1,0 +1,181 @@
+<mvc:View	xmlns:mvc="sap.ui.core.mvc" 
+			xmlns:core="sap.ui.core" 
+			xmlns:layout="sap.ui.layout" 
+			xmlns="sap.m" 
+			xmlns:f="sap.f"
+			xmlns:fb="sap.ui.comp.filterbar"
+			xmlns:ui="sap.ui.table"
+			xmlns:ci="com.ey.bamlocattr.controls"
+			xmlns:vm="sap.ui.comp.variants"
+			controllerName="com.ey.bamlocattr.controller.Mainlocation"
+	displayBlock="true">
+	<App id="app">
+		<f:DynamicPage id="page" headerExpanded="true">
+			<!-- DynamicPage Title -->
+			<f:title>
+				<f:DynamicPageTitle visible="false">
+					<f:heading>
+						<!--<vm:VariantManagement -->
+						<!--	id="VariantFT" -->
+						<!--	select="onSelVariFT" -->
+						<!--	showSetAsDefault="true" -->
+						<!--	save="onSaveVariFT" -->
+						<!--	enabled="true" -->
+						<!--	manage="onManageVariFT" -->
+						<!--	showExecuteOnSelection="false" -->
+						<!--	showShare="false" -->
+						<!--	variantItems="{variant>/VariantFT}" standardItemText="Standard">-->
+						<!--	<vm:variantItems>-->
+						<!--		<vm:VariantItem text="{variant>Name}" key="{variant>Key}"/>-->
+						<!--	</vm:variantItems>-->
+						<!--</vm:VariantManagement>-->
+					</f:heading>
+				</f:DynamicPageTitle>
+			</f:title>
+			<!-- DynamicPage Header -->
+			<f:header>
+				<f:DynamicPageHeader pinnable="true">
+					<f:content>
+						<fb:FilterBar id="locationFilterBar" header="" search="onSearch" cancel="onCancel" filtersDialogClosed="onFiltersDialogClosed" showClearButton="true"
+							showFilterConfiguration="false">
+							<fb:filterGroupItems>
+								<fb:FilterGroupItem groupName="G1" groupTitle="Material" name="G" label="{i18n>Location}" visibleInFilterBar="true">
+									<fb:control>
+										<!--<MultiInput id="idRuleSel" valueHelpOnly="true" valueHelpRequest="onMatnrValueHelpRequested"/>-->
+										<ci:MultiInput id="locationLvl" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="LocationValueHelp"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+								<fb:FilterGroupItem groupName="G1" groupTitle="Material" name="E" label="{i18n>oldLocation}" visibleInFilterBar="true">
+									<fb:control>
+										<ci:MultiInput id="oldLocationLvl" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="oldLocationValueHelp"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+								<fb:FilterGroupItem groupName="G1" groupTitle="Material" name="F" label="{i18n>SupplyLocationPlatform}" visibleInFilterBar="true">
+									<fb:control>
+										<ActionSelect 
+	                                        id="idIBPRelevant" 
+	                                        items="{oModel>/SupplyLocationPlatform}" >
+	                                        <core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+	                                        <!--<layoutData>
+	                                            <l:GridData span="XL2 L3 M3 S4"/>
+	                                        </layoutData>-->
+	                                    </ActionSelect>
+									</fb:control>
+							</fb:FilterGroupItem>
+							</fb:filterGroupItems>
+						</fb:FilterBar>
+					</f:content>
+				</f:DynamicPageHeader>
+			</f:header>
+			<!-- DynamicPage Content -->
+			<f:content>
+				<ui:Table id="LocalTable" rows="{ path: 'Locationmod>/'}" selectionMode="MultiToggle" ariaLabelledBy="title"
+					rowSelectionChange="onSelectedItems" visibleRowCountMode="Auto">
+					<ui:extension>
+						<OverflowToolbar>
+							<!--<vm:VariantManagement 
+								id="VariantTab" 
+								select="onSelVariTab" 
+								showSetAsDefault="true" 
+								save="onSaveVariTab" 
+								enabled="true" 
+								manage="onManageVariTab" 
+								showExecuteOnSelection="false" 
+								showShare="false" 
+								variantItems="{variant>/VariantTab}" 
+								standardItemText="Standard">
+									<vm:variantItems>
+										<vm:VariantItem text="{variant>Name}" key="{variant>Key}"/>
+									</vm:variantItems>
+							</vm:VariantManagement>-->
+							<ToolbarSpacer/>
+							<SearchField width="auto" search="handleFilter"/>
+							<OverflowToolbarButton type="Transparent" icon="sap-icon://sort" press="handleViewSettingsDialogButtonPressed"/>
+							<!--<Button id="createButton" text="{i18n>Create}" press="onCreate" icon="sap-icon://create"/>-->
+							<Button type="Transparent" id="editButton" text="{i18n>Edit}" press="onEdit" icon="sap-icon://edit"/>
+							<Button type="Transparent" text="{i18n>Display}" icon="sap-icon://table-view" press="onDisplay"/>
+							<!--<Button type="Transparent" icon="sap-icon://action-settings" press="onPersoButtonPressed"/>-->
+							<!--<Button  icon="sap-icon://action-settings" press="onColumnSelection"/>-->
+							<Button type="Transparent" icon="sap-icon://excel-attachment" press="onDataExport"/>
+						</OverflowToolbar>
+						<FacetFilter id="locationFilter" type="Light" showReset="true" showSummaryBar="true" reset="handleFacetFilterReset"
+							lists="{Locationmod>/filters}">
+							<lists>
+								<FacetFilterList title="{Locationmod>type}" key="{Locationmod>key}" multiSelect="true" tooltip="Click to apply filter"
+									listClose="handleListClose" items="{path: 'Locationmod>values', templateShareable: true}">
+									<items>
+										<FacetFilterItem text="{Locationmod>text}" key="{Locationmod>text}" count="{Locationmod>data}"/>
+									</items>
+								</FacetFilterList>
+							</lists>
+						</FacetFilter>
+					</ui:extension>
+					<ui:columns>
+						<ui:Column width="10rem" id="location">
+							<Label text="{i18n>Location}"/>
+							<ui:template>
+								<Text text="{Locationmod>Locno}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="SupplyLocationDescription">
+							<Label text="{i18n>SupplyLocationDescription}"/>
+							<ui:template>
+								<Text text="{Locationmod>Name1}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<!--<ui:Column width="12rem" id="oldLocation">
+							<Label text="{i18n>OldLocation}"/>
+							<ui:template>
+								<Text text="{Locationmod>Name}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>-->
+						<ui:Column width="12rem" id="SupplyAggrLocationType">
+							<Label text="{i18n>SupplyAggrLocationType}"/>
+							<ui:template>
+								<Text text="{Locationmod>Zagloctype}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="SupplyLocationPlatform">
+							<Label text="{i18n>SupplyLocationPlatform}"/>
+							<ui:template>
+								<Text text="{Locationmod>Zsupplylocplatform}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="SupplyActivity">
+							<Label text="{i18n>SupplyActivity}"/>
+							<ui:template>
+								<Text text="{Locationmod>Zsupplyactivity}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="10rem" id="SupplyRegionID">
+							<Label text="{i18n>SupplyRegionID}"/>
+							<ui:template>
+								<Text text="{Locationmod>Zsupplyregionid}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="SupplyRegionDescription">
+							<Label text="{i18n>SupplyRegionDescription}"/>
+							<ui:template>
+								<Text text="{Locationmod>Zsupplyregiondesc}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="Zlocdesc2">
+							<Label text="{i18n>Zlocdesc2}"/>
+							<ui:template>
+								<Text text="{Locationmod>Zlocdesc2}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+					</ui:columns>
+				</ui:Table>
+			</f:content>
+			<!-- DynamicPage Footer -->
+			<!--<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Accept" text="Accept"/>
+				<Button type="Reject" text="Reject"/>
+			</OverflowToolbar>
+		</f:footer>-->
+		</f:DynamicPage>
+	</App>
+</mvc:View>

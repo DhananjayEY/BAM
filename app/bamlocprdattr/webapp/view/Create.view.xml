@@ -1,0 +1,288 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified"
+	controllerName="com.ey.bamlocprdattr.controller.Create" xmlns:html="http://www.w3.org/1999/xhtml">
+	<!--<App>-->
+	<!--	<pages>-->
+	<Page enableScrolling="false" navButtonPress="onNavBack" showNavButton="true" title="{i18n>Create}" showHeader="{flpCheck>/isRunningOnFlp}">
+		<HBox justifyContent="End" alignItems="Start" class="sapUiTinyMarginTop sapUiTinyMarginBottom">
+			<!--<HBox alignItems="Start" height="100%" justifyContent="Center">
+				<MessageStrip id="Material"></MessageStrip>
+			</HBox>-->
+			<!--<HBox justifyContent="Center" alignItems="Center" height="100%">-->
+			<u:FileUploader id="fileUploader" name="myFileUpload" uploadUrl="upload/" tooltip="Upload your file to the local server"
+				uploadComplete="handleUploadComplete" change="handleValueChange" typeMissmatch="handleTypeMissmatch" style="Transparent" buttonText="Browse"
+				placeholder="Choose a XLSX file"></u:FileUploader>
+			<UploadCollection id="ucDownloadTemplate" visible="false">
+				<items>
+					<UploadCollectionItem fileName="DownloadTemplate.csv" id="uciDownloadTemplate" enableEdit="false" visibleDelete="false" enableDelete="false"
+						visibleEdit="false" selected="true" url="templates/DownloadTemplate.csv" mimeType="application/msexcel"/>
+				</items>
+			</UploadCollection>
+			<Button type="Transparent" text="Upload" icon="sap-icon://upload" press="handleUploadPress"/>
+			<Button type="Transparent" icon="sap-icon://download" id="btnDownloadTemplate" press="onDownloadTemplate" text="Download Template"/>
+			<!--</HBox>-->
+		</HBox>
+		<content>
+			<ScrollContainer width="100%" height="80%" horizontal="true" vertical="true" focusable="true">
+				<Table items="{oModel>/oData}" id="LocalTable" sticky="ColumnHeaders">
+					<columns>
+						<Column hAlign="Center" width="5rem">
+							<Text text="{i18n>Action}"/>
+						</Column>
+						<Column id="statusCol" hAlign="Center" width="5rem" visible="false">
+							<Text text="{i18n>Status}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>ProductID}" class="asterisk"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>LocationID}" class="asterisk"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>AggregateLocation}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>PlanningPlant}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>StockingNodeTypeIndicator}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>PeriodsBetweenReplenishment}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>StockingStockPolicyIndicator}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>ForecastRelevant}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>MasterScheduler}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>DeploymentPlanner}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>MpsSubId}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>ApsSubId}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>InventoryHoldingPolicy}"/>
+						</Column>
+						<!--<Column hAlign="Center" width="10rem">-->
+						<!--	<Text text="{i18n>Subnetwork ID}"/>-->
+						<!--</Column>-->
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>ProductionFrozenZone}"/>
+						</Column>
+						<!--<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>ExternalRecieptFrozenZone}"/>
+						</Column>-->
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>ConsumptionType}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>ForecastConsumptionMode}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>ForecastOffsetInMonths}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>MinOrderLeadTime}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>SafetyStockMethod}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>StaticSafetyStockQuantity}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>RelativePercentageStaticSafetyStock}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>WFCSupplyMethod}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>StaticWFCQuantity}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>WFCDemandMethod}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>TargetStockLevelMethod}"></Text>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>PurchaseConstraint}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>ProductionConstraint}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>ForecastRelease}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>InventoryChannelStrategy}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>DemandReassignmentParentID}"/>
+						</Column>
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>ProductPriority}"/>
+						</Column>
+						<!--<Column hAlign="Center" width="10rem">
+							<Text text="{i18n>IBPSupplyRelevant}"/>
+						</Column>-->
+						<Column hAlign="Center" width="14rem">
+							<Text text="{i18n>BOMRelevancy}"/>
+						</Column>
+						<Column hAlign="Center" width="18rem">
+							<Text text="{i18n>PlanningStrategy}"/>
+						</Column>
+					</columns>
+					<items >
+						<ColumnListItem >
+							<cells>
+								<Button id="Delete" icon="sap-icon://delete" type="Transparent" press="onDelete" enabled="{oModel>disableOnSubmit}"/>
+								<core:Icon src="{oModel>icon}" color="{oModel>iconColor}" size="1.5rem" press="onIconPress"/>
+								<Input enabled="{oModel>disableOnSubmit}" valueHelpOnly="true" id="SingleProduct" value="{oModel>ProductID}"
+									valueHelpRequest="CreateProductValueHelp" placeholder="Enter Product ID" showValueHelp="true"/>
+								<Input enabled="{oModel>disableOnSubmit}" valueHelpOnly="true" id="SingleLocation" value="{oModel>LocationID}"
+									valueHelpRequest="CreateLocationtValueHelp" placeholder="Location ID" showValueHelp="true"/>
+								<Input enabled="{oModel>disableOnSubmit}" valueHelpOnly="true" id="SingleAggregate" valueHelpRequest="CreateggregateValueHelp"
+									value="{oModel>AggregateLocation}" placeholder="Enter Aggregate Location" showValueHelp="true"/>
+								<Input enabled="{oModel>disableOnSubmit}" valueHelpOnly="true" id="singlePlanningPlant" valueHelpRequest="CreatePlanningPlantValueHelp"
+									value="{oModel>PlanningPlantID}" placeholder="Enter Planning Plant" showValueHelp="true"/>
+								<ActionSelect enabled="{oModel>disableOnSubmit}" change="onStockingNodeTypeIndicator" selectedKey="{oModel>StockingNodeTypeIndicator}"
+									items="{path: 'oModel>/StockingNodeTypeIndicator', templateShareable:true}">
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>
+								<Input enabled="{oModel>disableOnSubmit}" id="Replenishment" value="{oModel>PeriodsBetweenReplenishment}" editable="true"
+									placeholder="{i18n>PeriodsBetweenReplenishment}" type="Number" valueState="Information" valueStateText="1-12 WEEKS"
+									liveChange="periodsBetweenFormat"/>
+								<ActionSelect enabled="{oModel>disableOnSubmit}" id="Stockingstockpolicy" selectedKey="{oModel>Stockingstockpolicyindicator}"
+									change="onStockingstockpolicyindicator" items="{path: 'oModel>/Stockingstockpolicyindicator', templateShareable:true}">
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>
+								<ActionSelect enabled="{oModel>disableOnSubmit}" id="ForecastRelevant" selectedKey="{oModel>ForecastRelevant}" change="onForecastRelevant"
+									items="{path: 'oModel>/ForecastRelevant', templateShareable:true}">
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>
+								<!--<ActionSelect enabled="{oModel>disableOnSubmit}" selectedKey="{oModel>MasterScheduler}" change="onMasterScheduler" items="{path: 'oModel>/MasterScheduler', templateShareable:true}" >
+									<core:Item key="{oModel>Name_Text}" text="{oModel>Name_Text} - {oModel>Name_Text}"/>
+								</ActionSelect>
+									<ActionSelect enabled="{oModel>disableOnSubmit}" selectedKey="{oModel>DeploymentPlanner}" change="onDeploymentPlanner" items="{path: 'oModel>/DeploymentPlanner', templateShareable:true}" >
+									<core:Item key="{oModel>Bname}" text="{oModel>Bname} - {oModel>Bname}"/>
+								</ActionSelect>-->
+								<Input id="masterScheduler" value="{oModel>MasterScheduler}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpUser"
+									enabled="{oModel>disableOnSubmit}"/>
+								<Input id="deploymentPlanner" value="{oModel>DeploymentPlanner}" valueHelpOnly="false" showValueHelp="true"
+									valueHelpRequest="onValueHelpUser" enabled="{oModel>disableOnSubmit}"/>
+								<ActionSelect enabled="{oModel>disableOnSubmit}" selectedKey="{oModel>MpsSubId}"
+									items="{path: 'oModel>/MpsSubNetworkID', templateShareable:true}">
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>
+								<ActionSelect enabled="{oModel>disableOnSubmit}" selectedKey="{oModel>ApsSubId}"
+									items="{path: 'oModel>/ApsSubNetworkID', templateShareable:true}">
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>
+								<ActionSelect enabled="false" selectedKey="{oModel>InventoryHoldingPolicy}" change="onInventoryHoldingPolicy"
+									items="{path: 'oModel>/InventoryHoldingPolicy', templateShareable:true}">
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>
+								<Input enabled="{oModel>disableOnSubmit}" id="Production" value="{oModel>ProductionFrozenZone}" editable="true"
+									placeholder="{i18n>ProductionFrozenZone}" type="Number" valueState="Information" valueStateText="Number Only"/>
+								<!--<Input enabled="{oModel>disableOnSubmit}" id="ExternalReciept" value="{oModel>ExternalRecieptFrozenZone}"  editable="true" placeholder="{i18n>ExternalRecieptFrozenZone}"
+									type="Number" valueState="Information" valueStateText="Number Only"/>-->
+								<ActionSelect enabled="{oModel>disableOnSubmit}" selectedKey="{oModel>ConsumptionType}" change="onConsumptionType"
+									items="{path: 'oModel>/ConsumptionType', templateShareable:true}">
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>
+								<ActionSelect enabled="{oModel>disableOnSubmit}" selectedKey="{oModel>ForecastConsumptionMode}" change="onForecastConsumptionMode"
+									items="{path: 'oModel>/ForecastConsumptionMode', templateShareable:true}">
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>
+								<Input enabled="{oModel>disableOnSubmit}" id="ForecastOff" value="{oModel>ForecastOffsetinMonths}" editable="true"
+									placeholder="{i18n>ForecastOffsetInMonths}" type="Number" valueState="Information" valueStateText="Number Only"/>
+								<Input enabled="{oModel>disableOnSubmit}" id="MinOrder" value="{oModel>MinOrderLeadTime}" editable="true"
+									placeholder="{i18n>MinOrderLeadTime}" type="Number" valueState="Information" valueStateText="Number Only"/>
+								<ActionSelect enabled="{oModel>disableOnSubmit}" selectedKey="{oModel>SafetyStockMethod}" change="onSafetyStockMethod"
+									items="{path: 'oModel>/SafetyStockMethod', templateShareable:true}">
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>
+								<Input enabled="{oModel>disableOnSubmit}" id="StaticSafety" value="{oModel>StaticSafetyStockQuantity}" editable="true"
+									placeholder="{i18n>StaticSafetyStockQuantity}" type="Number" valueState="Information" valueStateText="Number Only"/>
+								<Input enabled="{oModel>disableOnSubmit}" id="RelativePercent" value="{oModel>RelativePercentageStaticSafetyStock}" editable="true"
+									placeholder="{i18n>RelativePercentageStaticSafetyStock}" type="Number" valueState="Information" valueStateText="Number Only"/>
+								<ActionSelect enabled="{oModel>disableOnSubmit}" selectedKey="{oModel>WFCSupplyMethod}" change="onWFCSupplyMethod"
+									items="{path: 'oModel>/WFCSupplyMethod', templateShareable:true}">
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>
+								<Input enabled="{oModel>disableOnSubmit}" id="WFCQuantity" value="{oModel>StaticWFCQuantity}" editable="true"
+									placeholder="{i18n>StaticWFCQuantity}" type="Number" valueState="Information" valueStateText="Number Only"/>
+								<ActionSelect enabled="{oModel>disableOnSubmit}" selectedKey="{oModel>WFCDemandMethod}" id="WFCDemand" change="onWFCDemandMethod"
+									items="{path: 'oModel>/WFCDemandMethod', templateShareable:true}">
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>
+								<ActionSelect enabled="{oModel>disableOnSubmit}" id="TargetS" selectedKey="{oModel>TargetStockLevelMethod}"
+									change="onTargetStockLevelMethod" items="{path: 'oModel>/TargetStockLevelMethod', templateShareable:true}">
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>
+								<ActionSelect enabled="{oModel>disableOnSubmit}" id="Purchasec" selectedKey="{oModel>PurchaseConstraint}" change="onPurchaseConstraint"
+									items="{path: 'oModel>/PurchaseConstraint', templateShareable:true}">
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>
+								<ActionSelect enabled="{oModel>disableOnSubmit}" id="Productionc" change="onProductionConstraint"
+									selectedKey="{oModel>ProductionConstraint}" items="{path: 'oModel>/ProductionConstraint', templateShareable:true}">
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>
+								<ActionSelect enabled="{oModel>disableOnSubmit}" id="ForecastR" change="onForecastRelease" selectedKey="{oModel>ForecastRelease}"
+									items="{path: 'oModel>/ForecastRelease', templateShareable:true}">
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>
+								<ActionSelect enabled="{oModel>disableOnSubmit}" id="Inventory" change="onInventoryChannelStrategy"
+									selectedKey="{oModel>InventoryChannelStrategy}" items="{path: 'oModel>/InventoryChannelStrategy', templateShareable:true}">
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>
+								<Input enabled="{oModel>disableOnSubmit}" id="DemandR" value="{oModel>DemandReassignmentParentID}"
+									placeholder="Enter Demand Reassignment Parent ID" valueHelpRequest="CreateProductValueHelp" showValueHelp="true"/>
+								<Input enabled="{oModel>disableOnSubmit}" id="Productp" value="{oModel>ProductPriority}" editable="true"
+									placeholder="{i18n>ProductPriority}" type="Number" valueState="Information" valueStateText="1-LOWEST to 9-HIGHEST"
+									liveChange="onProductPriorityFormat"/>
+								<!--<ActionSelect enabled="{oModel>disableOnSubmit}"  id="IBPSupplyRelevant" selectedKey="{oModel>IBPSupplyRelevant}"
+									items="{path: 'oModel>/IBPSupplyRelevant', templateShareable:true}" >
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>-->
+								<!--<Input enabled="{oModel>disableOnSubmit}" id="BomRelevancy" value="{oModel>BOMRelevancy}" editable="true" placeholder="{i18n>BOMRelevancy}"
+									maxLength="1" valueState="Information" valueStateText="X for YES, Blank for NO" liveChange="onBomTexFormat"/>-->
+								<ActionSelect enabled="{oModel>disableOnSubmit}" selectedKey="{oModel>BOMRelevancy}" id="BomRelevancy"
+									items="{path: 'oModel>/BOMRelevant', templateShareable:'true'}">
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>
+								<!--<Input enabled="{oModel>disableOnSubmit}" id="planningStrategy" value="{oModel>PlanningStrategy}" editable="true"-->
+								<!--	placeholder="{i18n>ProductPriority}" />-->
+								<ActionSelect enabled="{oModel>disableOnSubmit}" selectedKey="{oModel>PlanningStrategy}" id="planningStrategy"
+									items="{path: 'oModel>/PlanningStrategy', templateShareable:'true'}">
+									<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+								</ActionSelect>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</ScrollContainer>
+			<core:Icon src="sap-icon://add" class="ts_add" press="onAddCorp">
+				<core:layoutData>
+					<FlexItemData growFactor="1"/>
+				</core:layoutData>
+			</core:Icon>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button type="Emphasized" id="Submit" text="SUBMIT" press="onSubmit"></Button>
+			</Toolbar>
+		</footer>
+	</Page>
+	<!--	</pages>-->
+	<!--</App>-->
+</mvc:View>

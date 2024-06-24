@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:u="sap.ui.unified" xmlns:t="sap.ui.table" xmlns:m="sap.m"
+	xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core" xmlns:ci="com.ey.bamlocsrcattr.controls">
+	<ValueHelpDialog title="{i18n>LOCID}" ok="onLocToOk" cancel="onLocToCancel" afterClose="onLocToAfterClose" supportRanges="true"
+		key="Locno_To" descriptionKey="Loctodesc" supportMultiselect="true">
+		<filterBar>
+			<fb:FilterBar header="Search" search="onLocToSearch" showClearButton="true" showFilterConfiguration="false">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="G1" groupTitle="LocationTo" name="E" label="{i18n>LOCID}" visibleInFilterBar="true">
+						<fb:control>
+							<ci:MultiInput id="Locno_To" name="Locno_To" placeholder="Enter {i18n>LOCID}" showValueHelp="false"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G1" groupTitle="LocationTo " name="F" label="{i18n>LOCDESC}" visibleInFilterBar="true">
+						<fb:control>
+							<m:MultiInput id="Loctodesc" name="Loctodesc" placeholder="Enter {i18n>LOCDESC}" showValueHelp="false"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,149 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+		controllerName="com.ey.productattributes.controller.DisplayProduct"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page navButtonPress="onNavBack" showNavButton="true" title="{i18n>DisplayProduct}">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Button type="Back" press="onNavBack" visible="{flpCheck>/isRunningOnFlp}"/>
+				</contentLeft>
+				<contentMiddle>
+					<Text text="{i18n>DisplayProduct}"/>
+				</contentMiddle>
+				<contentRight>
+					<ActionSelect items='{DisplayModel>/results}' change="onSelectionChange">
+						<core:Item text="{DisplayModel>Prdid}"/>
+					</ActionSelect>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<f:Form id="idSelectedObj" editable="true">
+				<f:layout>
+					<f:ColumnLayout columnsM="1" columnsL="2" columnsXL="3"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer >
+						<f:formElements>
+							<f:FormElement id="idPRDID" label="{i18n>PRDID}">
+								<f:fields>
+									<Text text="{DisplayModel>Prdid}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement id="idZPORTFOLIOSUPMANAGER" label="{i18n>ZPORTFOLIOSUPMANAGER}">
+								<f:fields>
+									<Text text="{DisplayModel>Zportfoliosupmanager}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement id="idZMASTERPLANNER" label="{i18n>ZMASTERPLANNER}">
+								<f:fields>
+									<Text text="{DisplayModel>Zmasterplanner}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<!--<f:FormElement id="PACKAGETYPE" label="{i18n>PACKAGETYPE}">
+								<f:fields>
+									<Text text="{DisplayModel>Packagetype}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement id="PACKAGESIZE" label="{i18n>PACKAGESIZE}">
+								<f:fields>
+									<Text text="{DisplayModel>Packagesize}"></Text>
+								</f:fields>
+							</f:FormElement>-->
+							
+							<f:FormElement id="idZMASTERPLANNEDINDICATOR" label="{i18n>ZMASTERPLANNEDINDICATOR}">
+								<f:fields>
+									<Text text="{DisplayModel>Zmasterplannedindicator}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement id="idFORMGROUP" label="{i18n>FORMGROUP}">
+								<f:fields>
+									<Text text="{DisplayModel>Formgroup}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement id="idZSELLINGCOUNTRY" label="{i18n>ZSELLINGCOUNTRY}">
+								<f:fields>
+									<Text text="{= ${DisplayModel>ZsellingcountryT} !== '' ? ${DisplayModel>ZsellingcountryT} +'-'+ ${DisplayModel>Zsellingcountry} : ${DisplayModel>Zsellingcountry} }"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement id="idZIBPSUPPLYRELEVANT" label="{i18n>ZIBPSUPPLYRELEVANT}">
+								<f:fields>
+									<Text text="{DisplayModel>Zibpsupplyrelevant}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement id="idZDSI" label="{i18n>ZDSI}">
+								<f:fields>
+									<Text text="{DisplayModel>Zdsi}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement id="idZPLANNINGSTRATEGY" label="{i18n>ZPLANNINGSTRATEGY}">
+								<f:fields>
+									<Text text="{DisplayModel>Zplanningstrategy}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement id="idFCSTCONSMODE" label="{i18n>FCSTCONSMODE}">
+								<f:fields>
+									<Text text="{DisplayModel>Fcstconsmode}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement id="FORMULATIONDESC" label="{i18n>FORMULATIONDESC}">
+								<f:fields>
+									<Text text="{DisplayModel>Formulationdesc}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement id="ZSUPPLYPORTFOLIODESC" label="{i18n>ZSUPPLYPORTFOLIODESC}">
+								<f:fields>
+									<Text text="{DisplayModel>Zsupplyportfoliodesc}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement id="ZSUPPLYPRODUCTCENTERDESC" label="{i18n>ZSUPPLYPRODUCTCENTERDESC}">
+								<f:fields>
+									<Text text="{DisplayModel>Zsupplyproductcenterdesc}"></Text>
+								</f:fields>
+							</f:FormElement>
+							
+							<!--<f:FormElement id="ZPACKREGIONAL" label="{i18n>ZPACKREGIONAL}">
+								<f:fields>
+									<Text text="{= ${DisplayModel>ZpackregionalT} !== '' ? ${DisplayModel>ZpackregionalT} +'-'+ ${DisplayModel>Zpackregional} : ${DisplayModel>Zpackregional} }"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ZFORMULATIONREGIONAL}">
+								<f:fields>
+									<Text text="{= ${DisplayModel>ZformulationregionalT} !== '' ? ${DisplayModel>ZformulationregionalT} +'-'+ ${DisplayModel>Zformulationregional} : ${DisplayModel>Zformulationregional} }"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>FORMULATONID}">
+								<f:fields>
+									<Text text="{= ${DisplayModel>FormulatonidT} !== '' ? ${DisplayModel>FormulatonidT} +'-'+ ${DisplayModel>Formulatonid} : ${DisplayModel>Formulatonid} }"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ZSUPPLYPORTFOLIOID}">
+								<f:fields>
+									<Text text="{DisplayModel>Zsupplyportfolioid}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ZSUPPLYPRODUCTCENTERID}">
+								<f:fields>
+									<Text text="{DisplayModel>Zsupplyproductcenterid}"></Text>
+								</f:fields>
+							</f:FormElement>
+							-->
+						
+							<!--<f:FormElement label="{i18n>ZAGGPRODUCT}">
+								<f:fields>
+									<Text text="{DisplayModel>Zaggproduct}"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ZAGGPRODDESC}">
+								<f:fields>
+									<Text text="{DisplayModel>Zaggproddesc}"></Text>
+								</f:fields>
+							</f:FormElement>-->
+							
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</content>
+	</Page>
+</mvc:View>

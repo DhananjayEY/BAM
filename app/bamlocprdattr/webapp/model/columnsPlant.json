@@ -1,0 +1,12 @@
+{
+	"cols": [
+		{
+			"label": "Planning Plant ID",
+			"template": "Locno",
+			"width": "10rem"
+		}, {
+			"label": "Planning Plant Description",
+			"template": "Name1"
+		}
+	]
+}

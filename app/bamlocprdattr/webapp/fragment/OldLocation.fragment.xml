@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:u="sap.ui.unified" xmlns:t="sap.ui.table" xmlns:m="sap.m"
+	xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core" xmlns:ci="com.ey.bamlocprdattr.controls">
+	<ValueHelpDialog title="Old Location" ok="onOldLocF4Ok" cancel="onOldLocF4Cancel" afterClose="onOldLocF4AfterClose" supportRanges="true"
+		key="Locno" descriptionKey="Name1" supportMultiselect="true">
+		<filterBar>
+			<fb:FilterBar header="Search" search="onOldLocaF4FltSrch" showClearButton="true" showFilterConfiguration="false">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="G1" groupTitle="oldLocation" name="E" label="Old Location ID" visibleInFilterBar="true">
+						<fb:control>
+							<ci:MultiInput id="name1ID" name="Locno" placeholder="Enter Old Location ID" showValueHelp="false"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G1" groupTitle="oldLocation " name="F" label="Old Location Description" visibleInFilterBar="true">
+						<fb:control>
+							<m:MultiInput id="idPrdLvlID" name="Name1" placeholder="Enter Old Location Description" showValueHelp="false"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>

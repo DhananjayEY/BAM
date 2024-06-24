@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ViewSettingsDialog confirm="handleConfirm" resetFilters="handleResetFilter">
+		<sortItems >
+			<ViewSettingsItem text="{i18n>PRDID}" key="Prdid" selected="true" />
+			<!--<ViewSettingsItem text="Package Type" key="Packagetype"/>
+			<ViewSettingsItem text="Package Size" key="Packagesize"/>-->
+			<ViewSettingsItem text="{i18n>ZDSI}" key="Zdsi"/>
+			<ViewSettingsItem text="{i18n>ZMASTERPLANNEDINDICATOR}" key="Zmasterplannedindicator"/>
+			<ViewSettingsItem text="{i18n>ZSELLINGCOUNTRY}" key="Zsellingcountry"/>
+			<!--<ViewSettingsItem text="Packaging Supply Region" key="Zpackregional"/>
+			<ViewSettingsItem text="Formulation Supply Region" key="Zformulationregional" />
+			<ViewSettingsItem text="Supply Formulaton ID" key="Formulatonid"/>
+			<ViewSettingsItem text="Supply Formulation Description" key="Formulationdesc"/>
+			<ViewSettingsItem text="Supply Portfolio ID" key="Zsupplyportfolioid"/>
+			<ViewSettingsItem text="Supply Portfolio Description" key="Zsupplyportfoliodesc"/>
+			<ViewSettingsItem text="Supply Product Center ID" key="Zsupplyproductcenterid"/>
+			<ViewSettingsItem text="Supply Product Center Description" key="Zsupplyproductcenterdesc"/>-->
+			<ViewSettingsItem text="{i18n>FORMGROUP}" key="Formgroup" selected="true" />
+			<!--<ViewSettingsItem text="Aggregate Product ID" key="Zaggproduct"/>
+			<ViewSettingsItem text="Aggregate Product Description" key="Zaggproddesc"/>-->
+			<ViewSettingsItem text="{i18n>ZIBPSUPPLYRELEVANT}" key="Zibpsupplyrelevant"/>
+			<ViewSettingsItem text="{i18n>ZPLANNINGSTRATEGY}" key="Zportfoliosupmanager"/>
+			<ViewSettingsItem text="{i18n>FCSTCONSMODE}" key="Zmasterplanner"/>
+			<ViewSettingsItem text="{i18n>ZPORTFOLIOSUPMANAGER}" key="Fcstconsmode"/>
+			<ViewSettingsItem text="{i18n>ZMASTERPLANNER}" key="Zplanningstrategy"/>
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

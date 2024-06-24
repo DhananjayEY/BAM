@@ -1,0 +1,17 @@
+{
+	"cols": [{
+		"label": "Product Level ID",
+		"template": "ProdLvlID"
+	},{
+		"label": "Product Level Description",
+		"template": "ProdLvlDes"
+	},{
+		"label": "Profit Center",
+		"template": "Prctr"
+	},
+	{
+		"label": "Profit Center text",
+		"template": "PrctrDesc"
+	}
+	]
+}

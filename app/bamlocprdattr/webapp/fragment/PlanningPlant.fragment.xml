@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:u="sap.ui.unified" xmlns:t="sap.ui.table" xmlns:m="sap.m"
+	xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core" xmlns:ci="com.ey.bamlocprdattr.controls">
+	
+	<ValueHelpDialog title="Location" ok="onPlantF4Ok" cancel="onPlantF4Cancel" afterClose="onPlantF4AfterClose" supportRanges="false" 
+	supportMultiselect="true" key="Locno" descriptionKey="Name1">
+	
+	<!--<ValueHelpDialog title="Location" ok="onLocLvlF4Ok" cancel="onLocF4Cancel" afterClose="onLocF4AfterClose" supportRanges="true"-->
+	<!--	key="LocID" descriptionKey="PrctrDesc" supportMultiselect="true">-->
+		<filterBar>
+			<fb:FilterBar header="Search" search="onPlantF4FltSrch" showClearButton="true"
+				showFilterConfiguration="false">	
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="G1" groupTitle="Plant" name="E" label="Planning Plant ID" visibleInFilterBar="true">
+						<fb:control>
+							<ci:MultiInput id="idPlantID" name="Locno"  placeholder="Enter Planning Plant ID" showValueHelp="false"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G1" groupTitle="Plant" name="F" label="Planning Plant Description " visibleInFilterBar="true">
+						<fb:control>
+							<m:MultiInput id="idPlantDesc" name="Name1" value="" placeholder="Enter Planning Plant Description" showValueHelp="false"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>

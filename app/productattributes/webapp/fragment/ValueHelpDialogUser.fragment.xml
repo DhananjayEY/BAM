@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
+	<ValueHelpDialog title="User Name" ok="onValueHelpOkUser" cancel="onValueHelpCancelUser" afterClose="onValueHelpAfterCloseUser"
+		supportRanges="false" supportMultiselect="false" key="Bname" descriptionKey="Name_Text">
+		<filterBar>
+			<fb:FilterBar advancedMode="true" search="onFilterSearchUser" showFilterConfiguration="false">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="__$INTERNAL2$" name="Bname" label="Search by User Name" 
+						visibleInFilterBar="true" mandatory="true" >
+						<fb:control>
+							<m:MultiInput name="Bname" showValueHelp="false"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,454 @@
+<mvc:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:f="sap.ui.layout.form" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+	controllerName="com.ey.productattributes.controller.EditProduct">
+	<Page navButtonPress="onNavBack" showNavButton="true" showHeader="{flpCheck>/isRunningOnFlp}">
+		<content>			
+			<f:Form editable="true" id="editProduct" title="{i18n>EditSelectedText}{oModel>/count}">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanL="3" adjustLabelSpan="false" columnsXL="12" columnsL="12" columnsM="12" singleContainerFullSize="true"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="{i18n>ZPORTFOLIOSUPMANAGER}" id="idPortFolioManager">
+								<FlexBox renderType="Bare">
+									<Input 
+                                        id="ZPORTFOLIOSUPMANAGER" 
+                                        width="25%"
+                                        change="onUserInputChange"
+                                        value="{oModel>/Zportfoliosupmanager}"
+                                        showValueHelp="true" 
+                                        valueHelpOnly="true"
+                                        valueHelpRequest="onValueHelpUser"
+                                        placeholder="{i18n>ZPORTFOLIOSUPMANAGER}" />
+                                    <Button icon="sap-icon://decline" tooltip="Clear" press="clearPortfolioSupManager" 
+                                    	visible="{= ${oModel>/Zportfoliosupmanager} !== '' ? true : false }"/>
+								</FlexBox>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ZMASTERPLANNER}" id="idMasterPlanner">
+								<FlexBox renderType="Bare">
+									<Input 
+                                        id="ZMASTERPLANNER" 
+                                        width="25%"
+                                        value="{oModel>/Zmasterplanner}"
+                                        change="onUserInputChange"
+                                        showValueHelp="true" 
+                                        valueHelpOnly="true"
+                                        valueHelpRequest="onValueHelpUser"
+                                        placeholder="{i18n>ZMASTERPLANNER}" />
+                                    <Button icon="sap-icon://decline" tooltip="Clear" press="clearMasterPlanner"
+                                    	visible="{= ${oModel>/Zmasterplanner} !== '' ? true : false }"/>
+								</FlexBox>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ZMASTERPLANNEDINDICATOR}" id="idMasterPlnInd">
+								<FlexBox renderType="Bare">
+									<ActionSelect 
+                                        id="idMasterPlanned" 
+                                        items="{oModel>/MasterPlannedIndicator}" 
+                                        selectedKey="{oModel>/Zmasterplannedindicator}"
+                                        change="onValueChange">
+                                        <core:Item 
+                                            key="{oModel>ParamValue}"
+                                            text="{oModel>ParamValue} - {oModel>ParamText}"/>
+                                        <layoutData>
+                                            <l:GridData span="XL2 L3 M3 S4"/>
+                                        </layoutData>
+                                    </ActionSelect>
+								</FlexBox>
+							</f:FormElement>
+							<f:FormElement label="{i18n>FORMGROUP}" id="idFormGrp">
+								<FlexBox renderType="Bare">
+									<ActionSelect 
+                                        id="idFormGroup" 
+                                        items="{oModel>/FORMGROUP}" 
+                                        selectedKey="{oModel>/Formgroup}"
+                                        change="onValueChange">
+                                        <core:Item 
+                                            key="{oModel>ParamValue}"
+                                            text="{oModel>ParamValue} - {oModel>ParamText}"/>
+                                        <layoutData>
+                                            <l:GridData span="XL2 L3 M3 S4"/>
+                                        </layoutData>
+                                    </ActionSelect>
+									<!--<Input -->
+         <!--                               id="idFormGroup"-->
+         <!--                               width="25%"-->
+         <!--                               value="{oModel>/Formgroup}" -->
+         <!--                               liveChange="onLiveChange"-->
+         <!--                               placeholder="Supply Chain Group" />-->
+								</FlexBox>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ZSELLINGCOUNTRY}" id="idSellingCntry">
+								<FlexBox renderType="Bare">
+									<Input 
+                                        id="idSellingCountry" 
+                                        width="25%"
+                                        value="{oModel>/Zsellingcountry}" 
+                                        liveChange="onChange" 
+                                        placeholder="Selling Country" 
+                                        showValueHelp="true"
+                                        valueHelpRequest="onCountryF4">
+                                        <layoutData>
+                                            <l:GridData span="XL2 L3 M3 S4"/>
+                                        </layoutData>
+                                    </Input>
+								</FlexBox>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ZIBPSUPPLYRELEVANT}" id="idIBPSupRel">
+								<FlexBox renderType="Bare">
+									<ActionSelect 
+                                        id="idIBPRelevant" 
+                                        change="onValueChange" 
+                                        items="{oModel>/IBPRelevant}" 
+                                        selectedKey="{oModel>/Zibpsupplyrelevant}">
+                                        <core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+                                        <layoutData>
+                                            <l:GridData span="XL2 L3 M3 S4"/>
+                                        </layoutData>
+                                    </ActionSelect>
+								</FlexBox>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ZDSI}" id="idDSI">
+								<FlexBox renderType="Bare">
+									<ActionSelect 
+                                        id="idDsi" 
+                                        selectedKey="{oModel>/Zdsi}" 
+                                        items="{oModel>/DSI}" 
+                                        change="onValueChange">
+                                        <core:Item 
+                                            key="{oModel>ParamValue}" 
+                                            text="{oModel>ParamValue} - {oModel>ParamText}"/>
+                                        <layoutData>
+                                            <l:GridData span="XL2 L3 M3 S4"/>
+                                        </layoutData>
+                                    </ActionSelect>
+								</FlexBox>
+							</f:FormElement>
+                            <f:FormElement label="{i18n>ZPLANNINGSTRATEGY}" id="idPlanStrtgy">
+								<FlexBox renderType="Bare">
+									<!--<Input 
+                                        id="ZPLANNINGSTRATEGY" 
+                                        width="25%"
+                                        liveChange="onLiveChange"
+                                        value="{oModel>/Zplanningstrategy}"
+                                        maxLength="2"
+                                        valueState="Information"
+                                        valueStateText="Only 1 - 99"
+                                        placeholder="{i18n>ZPLANNINGSTRATEGY}" />-->
+                                    <ActionSelect 
+                                        id="ZPLANNINGSTRATEGY" 
+                                        width="25%"
+                                        selectedKey="{oModel>/Zplanningstrategy}" 
+                                        items="{oModel>/ZPLANNINGSTRATEGY}" >
+                                        <core:Item 
+                                            key="{oModel>ParamValue}" 
+                                            text="{oModel>ParamValue} - {oModel>ParamText}"/>
+                                        <layoutData>
+                                            <l:GridData span="XL2 L3 M3 S4"/>
+                                        </layoutData>
+                                    </ActionSelect>
+								</FlexBox>
+							</f:FormElement>
+                            <f:FormElement label="{i18n>FCSTCONSMODE}" id="idFcstMode">
+								<FlexBox renderType="Bare">
+									<ActionSelect 
+                                        id="FCSTCONSMODE" 
+                                        width="25%"
+                                        change="onLiveChange" 
+                                        selectedKey="{oModel>/ZForConModeKey}"
+                                        items="{oModel>/ZForecastConMode}" >
+                                        <core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+                                        <layoutData>
+                                            <l:GridData span="XL2 L3 M3 S4"/>
+                                        </layoutData>
+                                    </ActionSelect>
+								</FlexBox>
+							</f:FormElement>
+							<f:FormElement label="{i18n>FORMULATIONDESC}" id="idFormDesc">
+								<FlexBox renderType="Bare">
+									<Input 
+										width="25%"
+										id="idFormulationDesc" 
+										liveChange="onLiveChange"
+										value="{oModel>/Formulationdesc}">
+										<layoutData>
+											<l:GridData span="XL2 L3 M3 S4"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ZSUPPLYPORTFOLIODESC}" id="idSupplyPFDesc">
+								<FlexBox renderType="Bare">
+									<Input 
+										width="25%"
+										id="idPortfolioDesc" 
+										liveChange="onLiveChange"
+										value="{oModel>/Zsupplyportfoliodesc}">
+										<layoutData>
+											<l:GridData span="XL2 L3 M3 S4"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+							</f:FormElement>
+							<f:FormElement label="{i18n>ZSUPPLYPRODUCTCENTERDESC}" id="idProdCDesc">
+								<FlexBox renderType="Bare">
+									<Input 
+										width="25%"
+										id="idProductCenterDesc" 
+										liveChange="onLiveChange"
+										value="{oModel>/Zsupplyproductcenterdesc}">
+										<layoutData>
+											<l:GridData span="XL2 L3 M3 S4"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+			<Toolbar width="100%" id="toolBarSubmit">
+				<content>
+					<ToolbarSpacer/>
+					<Button type="Emphasized" text="{i18n>Submit}" width="100px" id="buttonSubmit" press="onsaveEdit"/>
+				</content>
+			</Toolbar>
+		</content>
+	</Page>
+</mvc:View>
+
+<!--<f:SimpleForm -->
+<!--				id="editProduct" -->
+<!--				editable="true" -->
+<!--				layout="ResponsiveGridLayout" -->
+<!--				title="{i18n>EditSelectedText}{oModel>/count}" -->
+<!--				labelSpanXL="3"-->
+<!--				labelSpanL="3" -->
+<!--				labelSpanM="3" -->
+<!--				labelSpanS="12" -->
+<!--				adjustLabelSpan="false" -->
+<!--				emptySpanXL="4" -->
+<!--				emptySpanL="4" -->
+<!--				emptySpanM="4" -->
+<!--				emptySpanS="0"-->
+<!--				columnsXL="1" -->
+<!--				columnsL="1" -->
+<!--				columnsM="1" -->
+<!--				singleContainerFullSize="false">-->
+<!--					<f:content>-->
+<!--					<Label text="{i18n>ZPORTFOLIOSUPMANAGER}"/>-->
+<!--					<Input -->
+<!--						id="ZPORTFOLIOSUPMANAGER" -->
+<!--						change="onUserInputChange"-->
+<!--						value="{oModel>/Zportfoliosupmanager}"-->
+<!--						showValueHelp="true" -->
+<!--						valueHelpOnly="true"-->
+<!--						valueHelpRequest="onValueHelpUser"-->
+<!--						placeholder="{i18n>ZPORTFOLIOSUPMANAGER}">-->
+<!--						<layoutData>-->
+<!--							<l:GridData span="XL2 L3 M3 S4"/>-->
+<!--						</layoutData>-->
+<!--					</Input>-->
+<!--					<Label text="{i18n>ZMASTERPLANNER}"/>-->
+<!--					<Input -->
+<!--						id="ZMASTERPLANNER" -->
+<!--						value="{oModel>/Zmasterplanner}"-->
+<!--						change="onUserInputChange"-->
+<!--						showValueHelp="true" -->
+<!--						valueHelpOnly="true"-->
+<!--						valueHelpRequest="onValueHelpUser"-->
+<!--						placeholder="{i18n>ZMASTERPLANNER}">-->
+<!--						<layoutData>-->
+<!--							<l:GridData span="XL2 L3 M3 S4"/>-->
+<!--						</layoutData>-->
+<!--					</Input>-->
+<!--					<Label text="{i18n>ZMASTERPLANNEDINDICATOR}"/>-->
+<!--					<ActionSelect -->
+<!--						id="idMasterPlanned" -->
+<!--						items="{oModel>/MasterPlannedIndicator}" -->
+<!--						selectedKey="{oModel>/Zmasterplannedindicator}"-->
+<!--						change="onValueChange">-->
+<!--						<core:Item -->
+<!--							key="{oModel>ParamValue}"-->
+<!--							text="{oModel>ParamValue} - {oModel>ParamText}"/>-->
+<!--						<layoutData>-->
+<!--							<l:GridData span="XL2 L3 M3 S4"/>-->
+<!--						</layoutData>-->
+<!--					</ActionSelect>-->
+<!--					<Label text="{i18n>FORMGROUP}"/>-->
+<!--					<Input -->
+<!--						id="idFormGroup"-->
+<!--						value="{oModel>/Formgroup}" -->
+<!--						liveChange="onLiveChange"-->
+<!--						placeholder="Supply Chain Group">-->
+<!--						<layoutData>-->
+<!--							<l:GridData span="XL2 L3 M3 S4"/>-->
+<!--						</layoutData>-->
+<!--					</Input>-->
+<!--					<Label text="{i18n>ZSELLINGCOUNTRY}"/>-->
+<!--					<Input -->
+<!--						id="idSellingCountry" -->
+<!--						value="{oModel>/Zsellingcountry}" -->
+<!--						liveChange="onChange" -->
+<!--						placeholder="Selling Country" -->
+<!--						showValueHelp="true"-->
+<!--						valueHelpRequest="onCountryF4">-->
+<!--						<layoutData>-->
+<!--							<l:GridData span="XL2 L3 M3 S4"/>-->
+<!--						</layoutData>-->
+<!--					</Input>-->
+<!--					<Label text="{i18n>ZIBPSUPPLYRELEVANT}"/>-->
+<!--					<ActionSelect -->
+<!--						id="idIBPRelevant" -->
+<!--						change="onValueChange" -->
+<!--						items="{oModel>/IBPRelevant}" -->
+<!--						selectedKey="{oModel>/Zibpsupplyrelevant}">-->
+<!--						<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>-->
+<!--						<layoutData>-->
+<!--							<l:GridData span="XL2 L3 M3 S4"/>-->
+<!--						</layoutData>-->
+<!--					</ActionSelect>-->
+<!--					<Label text="{i18n>ZDSI}"/>-->
+<!--					<ActionSelect -->
+<!--						id="idDsi" -->
+<!--						selectedKey="{oModel>/Zdsi}" -->
+<!--						items="{oModel>/DSI}" -->
+<!--						change="onValueChange">-->
+<!--						<core:Item -->
+<!--							key="{oModel>ParamValue}" -->
+<!--							text="{oModel>ParamValue} - {oModel>ParamText}"/>-->
+<!--						<layoutData>-->
+<!--							<l:GridData span="XL2 L3 M3 S4"/>-->
+<!--						</layoutData>-->
+<!--					</ActionSelect>-->
+<!--					<Label text="{i18n>ZPLANNINGSTRATEGY}"/>-->
+<!--					<Input -->
+<!--						id="ZPLANNINGSTRATEGY" -->
+<!--						liveChange="onLiveChange"-->
+<!--						value="{oModel>/Zplanningstrategy}"-->
+<!--						maxLength="2"-->
+<!--						valueState="Information"-->
+<!--						valueStateText="Only 1 - 99"-->
+<!--						placeholder="{i18n>ZPLANNINGSTRATEGY}">-->
+<!--						<layoutData>-->
+<!--							<l:GridData span="XL2 L3 M3 S4"/>-->
+<!--						</layoutData>-->
+<!--					</Input>-->
+<!--					<Label text="{i18n>FCSTCONSMODE}"/>-->
+<!--					<ActionSelect -->
+<!--						id="FCSTCONSMODE" -->
+<!--						change="onLiveChange" -->
+<!--						selectedKey="{oModel>/ZForConModeKey}"-->
+<!--						items="{oModel>/ZForecastConMode}" >-->
+<!--						<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>-->
+<!--						<layoutData>-->
+<!--							<l:GridData span="XL2 L3 M3 S4"/>-->
+<!--						</layoutData>-->
+<!--					</ActionSelect>-->
+					
+						
+					<!--<Label text="{i18n>PACKAGETYPE}"/>-->
+					<!--<ActionSelect -->
+					<!--	id="idPackageType" -->
+					<!--	selectedKey="{oModel>/Packagetype}" -->
+					<!--	items="{oModel>/PackageType}" -->
+					<!--	change="onValueChange">-->
+					<!--		<core:Item -->
+					<!--			key="{oModel>ParamValue}" -->
+					<!--			text="{oModel>ParamValue} - {oModel>ParamText}"/>-->
+						<!-- -{oModel>ParamText}  -->
+					<!--	<layoutData>-->
+					<!--		<l:GridData span="XL2 L3 M3 S4"/>-->
+					<!--	</layoutData>-->
+					<!--</ActionSelect>-->
+					<!--<Label text="{i18n>PACKAGESIZE}"/>-->
+					<!--<Input -->
+					<!--	id="idPackageSize" -->
+					<!--	placeholder="Package Size" -->
+					<!--	value="{oModel>/Packagesize}"-->
+					<!--	liveChange="onLiveChange" >-->
+					<!--	<layoutData>-->
+					<!--		<l:GridData span="XL2 L3 M3 S4"/>-->
+					<!--	</layoutData>-->
+					<!--</Input>-->
+					<!--<Label text="{i18n>ZPACKREGIONAL}"/>-->
+					<!--<ActionSelect -->
+					<!--	id="idPackageRgn" -->
+					<!--	items="{oModel>/PackagingRegion}" -->
+					<!--	selectedKey="{oModel>/Zpackregional}" -->
+					<!--	change="onValueChange">-->
+					<!--	<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>-->
+					<!--	<layoutData>-->
+					<!--		<l:GridData span="XL2 L3 M3 S4"/>-->
+					<!--	</layoutData>-->
+					<!--</ActionSelect>-->
+					<!--<Label text="{i18n>ZFORMULATIONREGIONAL}"/>-->
+					<!--<ActionSelect -->
+					<!--	id="idFormulationRegion" -->
+					<!--	items="{oModel>/FormulationRegion}" -->
+					<!--	selectedKey="{oModel>/Zformulationregional}"-->
+					<!--	change="onValueChange">-->
+					<!--	<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>-->
+					<!--	<layoutData>-->
+					<!--		<l:GridData span="XL2 L3 M3 S4"/>-->
+					<!--	</layoutData>-->
+					<!--</ActionSelect>-->
+					<!--<Label text="{i18n>FORMULATONID}"/>-->
+					<!--<ActionSelect -->
+					<!--	id="idFormulationID" -->
+					<!--	items="{oModel>/FormulationID}" -->
+					<!--	selectedKey="{oModel>/Formulatonid}" -->
+					<!--	change="onValueChange">-->
+					<!--	<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>-->
+					<!--	<layoutData>-->
+					<!--		<l:GridData span="XL2 L3 M3 S4"/>-->
+					<!--	</layoutData>-->
+					<!--</ActionSelect>-->
+					<!--<Label text="{i18n>ZSUPPLYPORTFOLIOID}"/>-->
+					<!--<ActionSelect -->
+					<!--	id="idPortfolioId" -->
+					<!--	items="{oModel>/PortfolioID}" -->
+					<!--	selectedKey="{oModel>/Zsupplyportfolioid}" -->
+					<!--	change="onValueChange">-->
+					<!--	<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>-->
+					<!--	<layoutData>-->
+					<!--		<l:GridData span="XL2 L3 M3 S4"/>-->
+					<!--	</layoutData>-->
+					<!--</ActionSelect>-->
+					<!--<Label text="{i18n>ZSUPPLYPRODUCTCENTERID}"/>-->
+					<!--<ActionSelect -->
+					<!--	id="idProductCenterID" -->
+					<!--	items="{oModel>/ProductID}" -->
+					<!--	selectedKey="{oModel>/Zsupplyproductcenterid}" -->
+					<!--	change="onValueChange">-->
+					<!--	<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>-->
+					<!--	<layoutData>-->
+					<!--		<l:GridData span="XL2 L3 M3 S4"/>-->
+					<!--	</layoutData>-->
+					<!--</ActionSelect>-->
+					<!--<Label text="{i18n>ZAGGPRODUCT}"/>-->
+					<!--<Input -->
+					<!--	id="idAggProduct" -->
+					<!--	value="{oModel>/Zaggproduct}" -->
+					<!--	liveChange="onLiveChange"-->
+					<!--	placeholder="{i18n>ZAGGPRODUCT}">-->
+					<!--	<layoutData>-->
+					<!--		<l:GridData span="XL2 L3 M3 S4"/>-->
+					<!--	</layoutData>-->
+					<!--</Input>-->
+					<!--<Label text="{i18n>ZAGGPRODDESC}"/>-->
+					<!--<Input -->
+					<!--	id="idAggProductDesc" -->
+					<!--	value="{oModel>/Zaggproddesc}" -->
+					<!--	liveChange="onLiveChange"-->
+					<!--	placeholder="{i18n>ZAGGPRODDESC}">-->
+					<!--	<layoutData>-->
+					<!--		<l:GridData span="XL2 L3 M3 S4"/>-->
+					<!--	</layoutData>-->
+					<!--</Input>-->
+<!--				</f:content>-->
+<!--			</f:SimpleForm>-->

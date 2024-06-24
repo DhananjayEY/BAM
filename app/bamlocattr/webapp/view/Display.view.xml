@@ -1,0 +1,97 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns="sap.m"
+	controllerName="com.ey.bamlocattr.controller.Display" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page navButtonPress="onNavBack" title="{i18n>Display}">
+				<customHeader>
+					<Bar>
+						<contentLeft>
+							<Button type="Back" press="onNavBack" visible="{flpCheck>/isRunningOnFlp}" />
+						</contentLeft>
+						<contentMiddle>
+							<Text text="{i18n>Display}"/>
+						</contentMiddle>
+						<contentRight>
+							<ActionSelect items='{DisplayModel>/results}' change="onSelectionChange">
+								<core:Item text="{DisplayModel>Locno}--{DisplayModel>Name1}"/>
+							</ActionSelect>
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<content>
+					<f:Form id="idSelectedObj" editable="true">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+								emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer >
+								<f:formElements>
+									<f:FormElement label="{i18n>Location}" id="idLocNo">
+										<f:fields>
+											<Text text="{DisplayModel>Locno}"></Text>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>SupplyLocationDescription}" id="idLocNoDesc">
+										<f:fields>
+											<Text text="{DisplayModel>Name1}"></Text>
+										</f:fields>
+									</f:FormElement>
+									<!--<f:FormElement label="{i18n>OldLocation}">
+										<f:fields>
+											<Text text="{= ${DisplayModel>Sort1} === '' ? '' : ${DisplayModel>Sort1} + ' - ' + ${DisplayModel>Name} }"></Text>
+										</f:fields>
+									</f:FormElement>-->
+									<!--<f:FormElement label="{i18n>Country}">
+										<f:fields>
+											<Text text="{DisplayModel>Land1}"></Text>
+										</f:fields>
+									</f:FormElement>-->
+									<!--<f:FormElement label="{i18n>MacroLocation}">
+										<f:fields>
+											<Text text="{DisplayModel>ZmacroLocation}"></Text>
+										</f:fields>
+									</f:FormElement>-->
+									<f:FormElement label="{i18n>SupplyAggrLocationType}" id="idSupAgLocType">
+										<f:fields>
+											<Text text="{= ${DisplayModel>Zagloctype} === '' ? '' : ${DisplayModel>Zagloctype} + '-' + ${DisplayModel>ZagloctypeT} }"></Text>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>SupplyLocationPlatform}" id="idSupLocPlt">
+										<f:fields>
+											<Text
+												text="{= ${DisplayModel>Zsupplylocplatform} === '' ? '' : ${DisplayModel>Zsupplylocplatform} + '-' + ${DisplayModel>ZsupplylocplatformT} }"></Text>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>SupplyActivity}" id="idSupActivity">
+										<f:fields>
+											<Text text="{= ${DisplayModel>Zsupplyactivity} === '' ? '' : ${DisplayModel>Zsupplyactivity} + '-' + ${DisplayModel>ZsupplyactivityT} }"></Text>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>SupplyRegionID}" id="idSupRgn">
+										<f:fields>
+											<Text text="{DisplayModel>Zsupplyregionid}"></Text>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>SupplyRegionDescription}" id="idSupRgnDesc">
+										<f:fields>
+											<Text text="{DisplayModel>Zsupplyregiondesc}"></Text>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>Zlocdesc2}" id="idZlocdesc2">
+										<f:fields>
+											<Text text="{DisplayModel>Zlocdesc2}"></Text>
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+								<f:layoutData>
+									<f:GridContainerData halfGrid="true"></f:GridContainerData>
+								</f:layoutData>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,152 @@
+{
+	"corp":[
+		{
+		"Material":"",
+		"Country":"",
+		"Consensus Default Flag ":"",
+		"IBP Relevancy":"",
+		"Netting Default":"",
+		"Stored Currency":"",
+		"materialNo":[
+	{
+		"Material":"M001",
+		"mDesc":"Material 1"	
+	},
+		{
+		"Material":"M002",
+		"mDesc":"Material 2"	
+	},
+		{
+		"Material":"M003",
+		"mDesc":"Material 3"	
+	},
+		{
+		"Material":"M004",
+		"mDesc":"Material 4"	
+	}
+	],
+
+		"country":[
+			{
+				"Key":"IN",
+				"Value":"India"
+			},
+				{
+				"Key":"UK",
+				"Value":"United Kingdom"
+			},
+				{
+				"Key":"IT",
+				"Value":"Italy"
+			},{
+					"Key":"AD",
+				"Value":"Andorda"
+			}
+			],
+			"StoredCurrency":[
+				{
+					"code":"AUD",
+					"value":"Australian Dollar"
+				},
+					{
+					"code":"BRE",
+					"value":" Brazilian Real"
+				},
+					{
+					"code":"COP",
+					"value":"Colombian Peso"
+				}
+				],
+					"IBPRelevancy":[
+				{
+					"code":"0",
+					"value":"Active"
+				},
+					{
+					"code":"1",
+					"value":"Inactive/Discontinued"
+				},
+					{
+					"code":"2",
+					"value":" Nonforecasted Active"
+				},
+				{
+					"code":"3",
+					"value":"Intermediates"
+				}
+				],
+					"NettingDefault":[
+				{
+					"code":"0",
+					"value":"No Netting"
+				},
+					{
+					"code":"1",
+					"value":"Crop GMID"
+				},
+					{
+					"code":"2",
+					"value":"Seeds TP"
+				},
+				{
+					"code":"3",
+					"value":"Seeds MSS"
+				},
+				{
+					"code":"5",
+					"value":"Crop Constrained"
+				}
+
+				],
+					"Quadrant":[
+				{
+					"code":"A"
+				},
+					{
+					"code":"B"
+				},
+					{
+					"code":"C"
+				},
+				{
+					"code":"D"
+				},
+				{
+					"code":"Not Applicable"
+				}
+
+				],
+					"Channel":[
+				{
+					"code":"MTO"
+				},
+					{
+					"code":"MTS"
+				},
+				
+				{
+					"code":"Not Applicable"
+				}
+
+				],
+					"ConsensusDefaultFlag":[
+				{
+					"code":"1 - Sales Forecast(Units)"
+				},
+					{
+					"code":"2 - Statistical Forecast(Units)"
+				},
+				
+				{
+					"code":"3 - Marketing Forecast(Units)"
+				},
+					{
+					"code":"4 - Customer Forecast(Units)"
+				}
+
+				]
+		}
+		]
+
+	
+}

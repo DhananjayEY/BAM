@@ -1,0 +1,44 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZBAM_SUPP_LOC_SOURCE_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="ZBAM_LOC_SOURCE_SEARCH" sap:content-version="1">
+				<Key><PropertyRef Name="Locno_To"/></Key><Property Name="Locno_To" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Locno_To" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Loctodesc" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Loctodesc" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/></EntityType>
+			<EntityType Name="ZBAM_SUPPLY_HCD_SEARCH" sap:content-version="1">
+				<Key><PropertyRef Name="ParamName"/></Key><Property Name="ParamName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="BAM ATTR NAME"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="ParamValue" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="BAM ATTR VALUE"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ParamText" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="BAM ATTR TEXT"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/></EntityType>
+			<EntityType Name="ZBAM_LOC_FROM_SEARCH" sap:content-version="1">
+				<Key><PropertyRef Name="Locno_From"/></Key><Property Name="Locno_From" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="locno_from"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Locfromdesc" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Locfromdesc"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/></EntityType>
+			<EntityType Name="ZBAM_MOT_SEARCH" sap:content-version="1">
+				<Key><PropertyRef Name="MoT"/></Key><Property Name="MoT" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="MoT" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Bezei" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Bezei" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/></EntityType>
+			<EntityType Name="ZBAM_SUPP_LOC_SOURCE" sap:content-version="1">
+				<Key><PropertyRef Name="LocnoFrom"/><PropertyRef Name="LocnoTo"/><PropertyRef Name="MotId"/><PropertyRef Name="Matnr"/></Key><Property Name="LocnoFrom" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Location From"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Trtyp" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="TRTYP" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="LocnoTo" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Location To" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="MotId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Mode of Transport"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Ztransportationconst" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Trans. Constraint"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zfrozenhorizontreceipt" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Tr. Rcpt Froz Zone"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="ZBAM_MATERIAL_SEARCH" sap:content-version="1">
+				<Key><PropertyRef Name="Matnr"/><PropertyRef Name="Maktx"/></Key><Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Maktx" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material Text" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="SelSource" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="SelSource" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/></EntityType>
+			<EntityContainer Name="ZBAM_SUPP_LOC_SOURCE_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="ZBAM_LOC_SOURCE_SEARCHSet" EntityType="ZBAM_SUPP_LOC_SOURCE_SRV.ZBAM_LOC_SOURCE_SEARCH" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ZBAM_SUPPLY_HCD_SEARCHSet" EntityType="ZBAM_SUPP_LOC_SOURCE_SRV.ZBAM_SUPPLY_HCD_SEARCH" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ZBAM_LOC_FROM_SEARCHSet" EntityType="ZBAM_SUPP_LOC_SOURCE_SRV.ZBAM_LOC_FROM_SEARCH" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ZBAM_MOT_SEARCHSet" EntityType="ZBAM_SUPP_LOC_SOURCE_SRV.ZBAM_MOT_SEARCH" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ZBAM_SUPP_LOC_SOURCESet" EntityType="ZBAM_SUPP_LOC_SOURCE_SRV.ZBAM_SUPP_LOC_SOURCE" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="ZBAM_MATERIAL_SEARCHSet" EntityType="ZBAM_SUPP_LOC_SOURCE_SRV.ZBAM_MATERIAL_SEARCH" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/></EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZBAM_SUPP_LOC_SOURCE_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZBAM_SUPP_LOC_SOURCE_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,19 @@
+/* Enter your custom styles here */
+
+.locationSourceText {
+	font-weight: bold;
+}
+
+.ts_add {
+    margin: 8px;
+    border-radius: 2rem solid black;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 5px;
+}
+
+.asterisk.sapMText::after {
+    color: #d04343;
+    content: ' *';
+    display:inline;
+}

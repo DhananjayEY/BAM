@@ -1,0 +1,121 @@
+<mvc:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:f="sap.ui.layout.form" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+	controllerName="com.ey.bamlocattr.controller.Edit">
+	<App>
+		<pages>
+			<Page navButtonPress="onNavBack" showNavButton="true" title="Edit" showHeader="{flpCheck>/isRunningOnFlp}">
+				<content>
+					<f:Form editable="true" id="Corp" title="{i18n>SelectText1}{aCount>/itemCount}">
+						<f:layout>
+							<f:ResponsiveGridLayout 
+								labelSpanL="3" 
+								adjustLabelSpan="false" 
+								columnsXL="12" 
+								columnsL="12" 
+								columnsM="12" 
+								
+								singleContainerFullSize="true"/>
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer>
+								<f:formElements>
+									<f:FormElement label="{i18n>SupplyAggrLocationType}" id="idSupplyAggrLocationType">
+										<FlexBox renderType="Bare">
+											<ActionSelect 
+		                                        width="25%"
+		                                        id="ltype" 
+		                                        items="{oModel>/SupplyAggrLocationType}"  
+		                                        change="onValueChange">
+										            <core:Item 
+		                                                key="{oModel>ParamValue}" 
+		                                                text="{oModel>ParamValue} - {oModel>ParamText}"/>
+		                                        <layoutData>
+		                                            <l:GridData span="XL2 L3 M3 S4"/>
+		                                        </layoutData>
+									        </ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>SupplyLocationPlatform}" id="idSupplyLocationPlatform">
+										<FlexBox renderType="Bare">
+											<ActionSelect 
+		                                        width="25%"
+		                                        id="pform" 
+		                                        items="{oModel>/SupplyLocationPlatform}"  
+		                                        change="onValueChange">
+										            <core:Item 
+		                                                key="{oModel>ParamValue}" 
+		                                                text="{oModel>ParamValue} - {oModel>ParamText}"/>
+		                                        <layoutData>
+		                                            <l:GridData span="XL2 L3 M3 S4"/>
+		                                        </layoutData>
+									            </ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>SupplyActivity}" id="idSupplyActivity">
+										<FlexBox renderType="Bare">
+											<ActionSelect 
+		                                        width="25%"
+		                                        id="sactivity" 
+		                                        items="{oModel>/SupplyActivity}"  
+		                                        change="onValueChange">
+										            <core:Item 
+		                                                key="{oModel>ParamValue}" 
+		                                                text="{oModel>ParamValue} - {oModel>ParamText}"/>
+		                                        <layoutData>
+		                                            <l:GridData span="XL2 L3 M3 S4"/>
+		                                        </layoutData>
+									            </ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>SupplyRegionID}" id="idSupplyRegionID">
+										<FlexBox renderType="Bare">
+											<ActionSelect 
+		                                        width="25%"
+		                                        id="sregion" 
+		                                        items="{oModel>/SupplyRegion}"  
+		                                        change="onListItemChange">
+										            <core:Item 
+		                                                key="{oModel>ParamValue}" 
+		                                                text="{oModel>ParamValue} - {oModel>ParamText}"/>
+		                                        <layoutData>
+		                                            <l:GridData span="XL2 L3 M3 S4"/>
+		                                        </layoutData>
+									            </ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>SupplyRegionDescription}" id="idSupplyRegionDescription">
+										<FlexBox renderType="Bare">
+											<Input 
+		                                        width="25%"
+		                                        id="sregionDesc" 
+		                                        value="{oModel>/SupplyRegionDesc}"  
+		                                        enabled="false"/>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>Zlocdesc2}" id="idZlocdesc2">
+										<FlexBox renderType="Bare">
+											<Input 
+		                                        width="25%"
+		                                        id="Zlocdesc2" 
+		                                        value="{oModel>/Zlocdesc2}" />
+										</FlexBox>
+									</f:FormElement>	
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button type="Emphasized" id="Submit" text="{i18n>SAVE}" press="onsaveEdit"></Button>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

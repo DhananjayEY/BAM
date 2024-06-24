@@ -1,0 +1,206 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout" xmlns="sap.m" xmlns:f="sap.f"
+	xmlns:fb="sap.ui.comp.filterbar" xmlns:ci="com.ey.bamlocsrcattr.controls" xmlns:ui="sap.ui.table"
+	controllerName="com.ey.bamlocsrcattr.controller.LocationAtrributes">
+	<f:DynamicPage id="locationSourceId" headerExpanded="true">
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<!--<f:heading>
+					<Text class="locationSourceText" text="Crop Location Source Attributes"/>
+				</f:heading>-->
+				<!--<f:heading>
+						<vm:VariantManagement standardItemText="Location Source">
+						</vm:VariantManagement>
+					</f:heading>-->
+				<!--<f:actions>
+						<ToolbarSpacer/>
+						<Button
+								text="Global Action"
+								type="Transparent"/>
+						<Button
+								text="Toggle Footer"
+								type="Transparent"
+								press="onToggleFooter"/>
+						<Button
+								icon="sap-icon://action"
+								type="Transparent"/>
+					</f:actions>-->
+			</f:DynamicPageTitle>
+		</f:title>
+		<!-- DynamicPage Header -->
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<f:content>
+					<fb:FilterBar id="filterbar" header="Search" search="onSearch" showClearButton="true" showFilterConfiguration="false">
+						<!-- useToolbar="false" -->
+						<fb:filterItems>
+							<fb:FilterItem name="A" label="{i18n>LOCFR}">
+								<fb:control>
+									<ci:MultiInput id="idShipFrom" valueHelpRequest="onLocationFromF4" value="{locationFrom>/Locno_From}" placeholder="Select From Loc ID"
+										liveChange="onLiveChange"/>
+									<!--<Input id="idShipFrom" value="{locationFrom>/Locno_From}" change="onMatnr1SelectChange" placeholder="Select Ship-From Loc. ID"
+										liveChange="handleCountrySearch" showValueHelp="true" valueHelpRequest="onLocationFromF4"/>-->
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="D" label="{i18n>OLDFROM}">
+								<fb:control>
+									<ci:MultiInput id="oldLocationFrom" valueHelpOnly="true" valueHelpRequest="oldLocationFromValueHelp" 
+										placeholder="Select Old Ship-From Loc. ID"/>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="C" label="{i18n>LOCID}">
+								<fb:control>
+									<ci:MultiInput id="idLocationID" valueHelpRequest="onLocationToF4" value="{locationTo>/Locno_To}" placeholder="Select Location ID"
+										liveChange="onLiveChange"/>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="B" label="{i18n>OLDLOCATION}">
+								<fb:control>
+									<ci:MultiInput id="oldLocationLvl" valueHelpOnly="true" valueHelpRequest="oldLocationValueHelp" 
+										placeholder="Select Old Location ID"/>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="E" label="{i18n>MOTID}">
+								<fb:control>
+									<ci:MultiInput id="idTransportID" valueHelpRequest="onModeOfTransportF4" value="{mot>/ParamValue}" placeholder="Select MOT"
+										liveChange="onLiveChange"/>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="F" label="{i18n>PRDID}">
+								<fb:control>
+									<ci:MultiInput id="idProductID" valueHelpRequest="onMatnrValueHelpRequested" value="{productID>/Matnr}" placeholder="Select Product ID"
+										liveChange="onLiveChange"/>
+								</fb:control>
+							</fb:FilterItem>
+							
+						</fb:filterItems>
+					</fb:FilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<!-- DynamicPage Content -->
+		<f:content>
+			<!--<VBox id="dynamicPageContent">-->
+			<ui:Table id="idLocationSourceTable" rows="{ path: 'locationSourceTable>/'}" selectionMode="MultiToggle" ariaLabelledBy="title"
+				rowSelectionChange="onSelectedItems" visibleRowCountMode="Auto" enableColumnFreeze="true">
+				<ui:extension>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<SearchField width="auto" search="handleSearch"/>
+						<Button type="Transparent" icon="sap-icon://sort" press="handleViewSettingsDialogButtonPressed"/>
+						<!--<Button type="Transparent" id="createButton" text="{i18n>Create}" press="onCreate" icon="sap-icon://create"/>-->
+						<Button type="Transparent" id="editButton" text="{i18n>Edit}" press="onEdit" icon="sap-icon://edit"/>
+						<Button type="Transparent" text="{i18n>Display}" icon="sap-icon://table-view" press="onDisplay"/>
+						<!--<Button type="Transparent" icon="sap-icon://action-settings" press="onPersoButtonPressed"/>-->
+						<Button type="Transparent" icon="sap-icon://excel-attachment" press="onDataExport"/>
+					</OverflowToolbar>
+					<FacetFilter id="locationSourceFilter" type="Light" showReset="true" reset="handleFacetFilterReset" lists="{locationSourceTable>/filters}">
+						<lists>
+							<FacetFilterList title="{locationSourceTable>type}" key="{locationSourceTable>key}" multiSelect="true" tooltip="Click to apply filter"
+								listClose="handleListClose" items="{path: 'locationSourceTable>values', templateShareable: true}">
+								<items>
+									<FacetFilterItem text="{locationSourceTable>text}" key="{locationSourceTable>text}" count="{locationSourceTable>data}"/>
+								</items>
+							</FacetFilterList>
+						</lists>
+					</FacetFilter>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column width="12rem" id="idColumnFromLocation">
+						<Label text="{i18n>LOCFR}"/>
+						<ui:template>
+							<Text text="{locationSourceTable>LocnoFrom}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="idColumnFromOldLocation">
+						<Label text="{i18n>OLDFROM}"/>
+						<ui:template>
+							<Text text="{locationSourceTable>Sort1}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="idColumnToLocation">
+						<Label text="{i18n>LOCID}"/>
+						<ui:template>
+							<Text text="{locationSourceTable>LocnoTo}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="idColumnToOldLocation">
+						<Label text="{i18n>OLDLOCATION}"/>
+						<ui:template>
+							<Text text="{locationSourceTable>Sort2}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="idColumnMotid">
+						<Label text="{i18n>MOTID}"/>
+						<ui:template>
+							<Text text="{locationSourceTable>MotId}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="idColumnProductId">
+						<Label text="{i18n>PRDID}"/>
+						<ui:template>
+							<Text text="{locationSourceTable>Matnr}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="idColumnHorizonReceipt">
+						<Label text="{i18n>ZFROZENHORIZONTRECEIPT}"/>
+						<ui:template>
+							<Text text="{locationSourceTable>Zfrozenhorizontreceipt}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="idColumnTransport">
+						<Label text="{i18n>ZTRANSPORTATIONCONST}"/>
+						<ui:template>
+							<Text text="{locationSourceTable>Ztransportationconst}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="idColumnApsTransport">
+						<Label text="{i18n>ZTRANSPORTATIONCONSTAPS}"/>
+						<ui:template>
+							<Text text="{locationSourceTable>ZtransportationconstAps}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="idColumnLeadTime">
+						<Label text="{i18n>TLEADTIME}"/>
+						<ui:template>
+							<Text text="{locationSourceTable>Ztleadtime}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="idApsTLaneOvrd">
+						<Label text="{i18n>ZAPSTLANEOVRD}"/>
+						<ui:template>
+							<Text text="{locationSourceTable>Zapstlaneovrd}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="idColumnMaxLotSize">
+						<Label text="{i18n>TMAXLOTSIZE}"/>
+						<ui:template>
+							<Text text="{locationSourceTable>Ztmaxlotsize}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="idColumnMinLotSize">
+						<Label text="{i18n>TMINLOTSIZE}"/>
+						<ui:template>
+							<Text text="{locationSourceTable>Ztminlotsize}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="idColumnRounding">
+						<Label text="{i18n>TROUNDING}"/>
+						<ui:template>
+							<Text text="{locationSourceTable>Ztrounding}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+			<!--</VBox>-->
+		</f:content>
+		<!-- DynamicPage Footer -->
+		<!--<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Accept" text="Accept"/>
+				<Button type="Reject" text="Reject"/>
+			</OverflowToolbar>
+		</f:footer>-->
+	</f:DynamicPage>
+</mvc:View>

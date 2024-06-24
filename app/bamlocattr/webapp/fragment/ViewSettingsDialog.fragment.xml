@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ViewSettingsDialog confirm="handleConfirm" resetFilters="handleResetFilter">
+		<sortItems >
+			<ViewSettingsItem text="Location" key="Locno"/>
+			<ViewSettingsItem text="Supply Location Description" key="Name1"/>
+			<ViewSettingsItem text="Supply Location Type" key="Zagloctype"/>
+			<!--<ViewSettingsItem text="Currency" key="Currency"/>-->
+			<!--<ViewSettingsItem text="Quadrant" key="Quadrant"/>-->
+			<!--<ViewSettingsItem text="Consensus Default" key="Consensus"/>-->
+			<!--<ViewSettingsItem text="IBP RELEVANCY" key="IbpRelevancy"/>-->
+			<!--<ViewSettingsItem text= "CHANNEL STRATEGY" key="ChannelStgy"/>-->
+			<!--<ViewSettingsItem text= "Reference" key="Reference"/>-->
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

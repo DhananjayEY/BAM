@@ -1,0 +1,265 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout" xmlns="sap.m" xmlns:f="sap.f"
+	xmlns:fb="sap.ui.comp.filterbar" xmlns:ui="sap.ui.table" xmlns:ci="com.ey.productattributes.controls"
+	controllerName="com.ey.productattributes.controller.Product">
+	<f:DynamicPage id="locationSourceId" headerExpanded="true">
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<!--<f:heading>
+					<Text class="locationSourceText" text="Crop Location Source Attributes"/>
+				</f:heading>-->
+				<!--<f:heading>
+						<vm:VariantManagement standardItemText="Location Source">
+						</vm:VariantManagement>
+					</f:heading>-->
+				<!--<f:actions>
+						<ToolbarSpacer/>
+						<Button
+								text="Global Action"
+								type="Transparent"/>
+						<Button
+								text="Toggle Footer"
+								type="Transparent"
+								press="onToggleFooter"/>
+						<Button
+								icon="sap-icon://action"
+								type="Transparent"/>
+					</f:actions>-->
+			</f:DynamicPageTitle>
+		</f:title>
+		<!-- DynamicPage Header -->
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<f:content>
+					<fb:FilterBar id="filterbar" header="Search" search="onSearch" showClearButton="true" showFilterConfiguration="false">
+						<!-- useToolbar="false" -->
+						<fb:filterItems>
+							<fb:FilterItem name="A" label="{i18n>PRDID}">
+								<fb:control>
+									<ci:MultiInput id="idMatnr" valueHelpOnly="true" valueHelpRequest="onMatnrValueHelpRequested" value="{locationFrom>/Locno_From}"
+										placeholder="Product ID"/>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="B" label="{i18n>ZIBPSUPPLYRELEVANT}">
+								<fb:control>
+									<ActionSelect 
+                                        id="idIBPRelevant" 
+                                        change="onValueChange" 
+                                        items="{temp>/root/0/IBPRelevant}" >
+                                        <core:Item key="{temp>ParamValue}" text="{temp>ParamValue} - {temp>ParamText}"/>
+                                        <!--<layoutData>
+                                            <l:GridData span="XL2 L3 M3 S4"/>
+                                        </layoutData>-->
+                                    </ActionSelect>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="C" label="{i18n>ZMASTERPLANNER}">
+								<fb:control>
+									<FlexBox renderType="Bare">
+										<Input id="idMASTERPLANNER" change="onUserInputChange" showValueHelp="true" valueHelpOnly="true" 
+											valueHelpRequest="onValueHelpUser" placeholder="{i18n>ZMASTERPLANNER}" value="{filterBar>/ZMASTERPLANNER}" />
+										<Button icon="sap-icon://decline" tooltip="Clear" press="clearMasterPlanner"
+	                                    	visible="{= ${filterBar>/ZMASTERPLANNER} !== '' ? true : false }"/>
+	                                </FlexBox>
+								</fb:control>
+							</fb:FilterItem>
+							<!--<fb:FilterItem name="B" label="{i18n>PRDDESC}">
+								<fb:control>
+									<Input id="idProductDesc" value="{locationFrom>/Locno_From}" change="onMatnr1SelectChange" placeholder="Product Description"
+										liveChange="handleProductDesc"/>
+								</fb:control>
+							</fb:FilterItem>-->
+						</fb:filterItems>
+					</fb:FilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<!-- DynamicPage Content -->
+		<f:content>
+			<ui:Table id="idProductTable" rows="{ path: 'productTable>/'}" selectionMode="MultiToggle" ariaLabelledBy="title"
+				rowSelectionChange="onSelectedItems" visibleRowCountMode="Auto">
+				<ui:extension>
+					<OverflowToolbar>
+						<!--<Title id="title" text="Products"/>-->
+						<ToolbarSpacer/>
+						<SearchField width="auto" search="handleSearch"/>
+						<Button type="Transparent" icon="sap-icon://sort" press="handleViewSettingsDialogButtonPressed"/>
+						<!--<Button type="Transparent" id="createButton" text="{i18n>Create}" press="onCreate" icon="sap-icon://create"/>-->
+						<Button type="Transparent" id="editButton" text="{i18n>Edit}" press="onEdit" icon="sap-icon://edit"/>
+						<Button type="Transparent" text="{i18n>Display}" icon="sap-icon://table-view" press="onDisplay"/>
+						<!--<Button type="Transparent" icon="sap-icon://action-settings" press="onPersoButtonPressed"/>-->
+						<Button type="Transparent" icon="sap-icon://excel-attachment" press="onDataExport"/>
+					</OverflowToolbar>
+					<FacetFilter id="productFilter" type="Light" showReset="true" showPersonalization="true" reset="handleFacetFilterReset"
+						lists="{productTable>/filters}">
+						<lists>
+							<FacetFilterList title="{productTable>type}" key="{productTable>key}" multiSelect="true" tooltip="Click to apply filter"
+								listClose="handleListClose" items="{path: 'productTable>values', templateShareable: true}">
+								<items>
+									<FacetFilterItem text="{productTable>text}" key="{productTable>text}" count="{productTable>data}"/>
+								</items>
+							</FacetFilterList>
+						</lists>
+					</FacetFilter>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column width="12rem" id="prdid">
+						<Label text="{i18n>PRDID}"/>
+						<ui:template>
+							<Text text="{productTable>Prdid}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="ZPORTFOLIOSUPMANAGER">
+						<Label text="{i18n>ZPORTFOLIOSUPMANAGER}"/>
+						<ui:template>
+							<Text text="{productTable>Zportfoliosupmanager}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="ZMASTERPLANNER">
+						<Label text="{i18n>ZMASTERPLANNER}"/>
+						<ui:template>
+							<Text text="{productTable>Zmasterplanner}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="masterPlnInd">
+						<Label text="{i18n>ZMASTERPLANNEDINDICATOR}"/>
+						<ui:template>
+							<Text text="{productTable>Zmasterplannedindicator}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="formGrp">
+						<Label text="{i18n>FORMGROUP}"/>
+						<ui:template>
+							<Text text="{productTable>Formgroup}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="sellingCountry">
+						<Label text="{i18n>ZSELLINGCOUNTRY}"/>
+						<ui:template>
+							<!--<Text text="{= ${productTable>ZsellingcountryT} === '' ? '' : ${productTable>ZsellingcountryT} + '-' + ${productTable>Zsellingcountry} }" wrapping="false"/>-->
+							<Text text="{productTable>Zsellingcountry}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="supplyRelevant">
+						<Label text="{i18n>ZIBPSUPPLYRELEVANT}"/>
+						<ui:template>
+							<Text text="{productTable>Zibpsupplyrelevant}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="zdsi">
+						<Label text="{i18n>ZDSI}"/>
+						<ui:template>
+							<Text text="{productTable>Zdsi}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="ZPLANNINGSTRATEGY">
+						<Label text="{i18n>ZPLANNINGSTRATEGY}"/>
+						<ui:template>
+							<Text text="{productTable>Zplanningstrategy}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="FCSTCONSMODE">
+						<Label text="{i18n>FCSTCONSMODE}"/>
+						<ui:template>
+							<Text text="{productTable>Fcstconsmode}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="formDesc">
+						<Label text="{i18n>FORMULATIONDESC}"/>
+						<ui:template>
+							<Text text="{productTable>Formulationdesc}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="suppPortDesc">
+						<Label text="{i18n>ZSUPPLYPORTFOLIODESC}"/>
+						<ui:template>
+							<Text text="{productTable>Zsupplyportfoliodesc}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="12rem" id="suppProdCenterDesc">
+						<Label text="{i18n>ZSUPPLYPRODUCTCENTERDESC}"/>
+						<ui:template>
+							<Text text="{productTable>Zsupplyproductcenterdesc}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<!--<ui:Column width="12rem" id="pkgRgn">-->
+					<!--	<Label text="{i18n>ZPACKREGIONAL}"/>-->
+					<!--	<ui:template>-->
+					<!--<Text text="{= ${productTable>ZpackregionalT} === '' ? '' : ${productTable>ZpackregionalT} + '-' + ${productTable>Zpackregional} }" wrapping="false"/>-->
+					<!--		<Text text="{productTable>Zpackregional}" wrapping="false" />-->
+					<!--	</ui:template>-->
+					<!--</ui:Column>-->
+					<!--<ui:Column width="12rem" id="pkgtype">-->
+					<!--	<Label text="{i18n>PACKAGETYPE}"/>-->
+					<!--	<ui:template>-->
+					<!--		<Text text="{productTable>Packagetype}" wrapping="false"/>-->
+					<!--	</ui:template>-->
+					<!--</ui:Column>-->
+					<!--<ui:Column width="12rem" id="pkgsize">-->
+					<!--	<Label text="{i18n>PACKAGESIZE}"/>-->
+					<!--	<ui:template>-->
+					<!--		<Text text="{productTable>Packagesize}" wrapping="false"/>-->
+					<!--	</ui:template>-->
+					<!--</ui:Column>-->
+					<!--<ui:Column width="12rem" id="formReg">-->
+					<!--	<Label text="{i18n>ZFORMULATIONREGIONAL}"/>-->
+					<!--	<ui:template>-->
+					<!--<Text text="{= ${productTable>ZformulationregionalT} === '' ? '' : ${productTable>ZformulationregionalT} + '-' + ${productTable>Zformulationregional} }" wrapping="false"/>-->
+					<!--		<Text text="{productTable>Zformulationregional}" wrapping="false" />-->
+					<!--	</ui:template>-->
+					<!--</ui:Column>-->
+					<!--<ui:Column width="12rem" id="formId">-->
+					<!--	<Label text="{i18n>FORMULATONID}"/>-->
+					<!--	<ui:template>-->
+					<!--		<Text text="{productTable>Formulatonid}" wrapping="false"/>-->
+					<!--	</ui:template>-->
+					<!--</ui:Column>-->
+					
+					<!--<ui:Column width="12rem" id="portID">-->
+					<!--	<Label text="{i18n>ZSUPPLYPORTFOLIOID}"/>-->
+					<!--	<ui:template>-->
+					<!--		<Text text="{productTable>Zsupplyportfolioid}" wrapping="false"/>-->
+					<!--	</ui:template>-->
+					<!--</ui:Column>-->
+					
+					<!--<ui:Column width="12rem" id="suppProdCenterID">-->
+					<!--	<Label text="{i18n>ZSUPPLYPRODUCTCENTERID}"/>-->
+					<!--	<ui:template>-->
+					<!--		<Text text="{productTable>Zsupplyproductcenterid}" wrapping="false"/>-->
+					<!--	</ui:template>-->
+					<!--</ui:Column>-->
+					
+					<!--<ui:Column width="12rem" id="formGrp">-->
+					<!--	<Label text="{i18n>FORMGROUP}"/>-->
+					<!--	<ui:template>-->
+					<!--		<Text text="{productTable>Formgroup}" wrapping="false"/>-->
+					<!--	</ui:template>-->
+					<!--</ui:Column>-->
+					<!--<ui:Column width="12rem" id="aggProd">-->
+					<!--	<Label text="{i18n>ZAGGPRODUCT}"/>-->
+					<!--	<ui:template>-->
+					<!--		<Text text="{productTable>Zaggproduct}" wrapping="false"/>-->
+					<!--	</ui:template>-->
+					<!--</ui:Column>-->
+					<!--<ui:Column width="12rem" id="prodDesc">-->
+					<!--	<Label text="{i18n>ZAGGPRODDESC}"/>-->
+					<!--	<ui:template>-->
+					<!--		<Text text="{productTable>Zaggproddesc}" wrapping="false"/>-->
+					<!--	</ui:template>-->
+					<!--</ui:Column>-->
+				</ui:columns>
+			</ui:Table>
+			<!--<ScrollContainer horizontal="true" vertical="true" focusable="true">
+				
+			</ScrollContainer>-->
+		</f:content>
+		<!-- DynamicPage Footer -->
+		<!--<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Accept" text="Accept"/>
+				<Button type="Reject" text="Reject"/>
+			</OverflowToolbar>
+		</f:footer>-->
+	</f:DynamicPage>
+</mvc:View>

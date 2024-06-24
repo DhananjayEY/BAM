@@ -1,0 +1,360 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.ey.bamlocprdattr.controller.Edit"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page navButtonPress="onNavBack" showNavButton="true" title="Edit" showHeader="{flpCheck>/isRunningOnFlp}">
+				<content>
+					<f:Form editable="true" id="editProduct" title="{i18n>SelectText1}{aCount>/itemCount}">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanL="3" adjustLabelSpan="false" columnsXL="12" columnsL="12" columnsM="12" singleContainerFullSize="true"/>
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer>
+								<f:formElements>
+									<f:FormElement label="{i18n>MasterScheduler}" id="idMasterScheduler">
+										<FlexBox renderType="Bare">
+											<Input id="Master" width="25%" editable="true" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpUser"
+												change="onChange" placeholder="{i18n>MasterScheduler}" value="{oModel>/Zmastscheduler}"/>
+											<Button icon="sap-icon://decline" tooltip="Clear" press="clearMasterScheduler"
+												visible="{= ${oModel>/Zmastscheduler} !== '' ? true : false }"/>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>DeploymentPlanner}" id="idDeploymentPlanner">
+										<FlexBox renderType="Bare">
+											<Input id="Deployment" width="25%" editable="true" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpUser"
+												change="onChange" value="{oModel>/Zdeploymentplanner}" placeholder="{i18n>DeploymentPlanner}"/>
+											<Button icon="sap-icon://decline" tooltip="Clear" press="clearDeploymentPlanner"
+												visible="{= ${oModel>/Zdeploymentplanner} !== '' ? true : false }"/>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZPRODSCHEDULER}" id="idZPRODSCHEDULER">
+										<FlexBox renderType="Bare">
+											<Input id="ZPRODSCHEDULER" width="25%" placeholder="{i18n>ZPRODSCHEDULER}" editable="true" valueHelpOnly="true" showValueHelp="true"
+												valueHelpRequest="onValueHelpUser" change="onChange" value="{oModel>/Zprodscheduler}"/>
+											<Button icon="sap-icon://decline" tooltip="Clear" press="clearProdScheduler" visible="{= ${oModel>/Zprodscheduler} !== '' ? true : false }"/>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZMATERIALPLANNER}" id="idZMATERIALPLANNER">
+										<FlexBox renderType="Bare">
+											<Input id="ZMATERIALPLANNER" width="25%" placeholder="{i18n>ZMATERIALPLANNER}" editable="true" valueHelpOnly="true" showValueHelp="true"
+												valueHelpRequest="onValueHelpUser" change="onChange" value="{oModel>/Zmaterialplanner}"/>
+											<Button icon="sap-icon://decline" tooltip="Clear" press="clearMaterialPlanner"
+												visible="{= ${oModel>/Zmaterialplanner} !== '' ? true : false }"/>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ProductionFrozenZone}" id="idProductionFrozenZone">
+										<FlexBox renderType="Bare">
+											<Input width="25%" id="Frozen" value="{oModel>/ProductionFrozenZone}" editable="true" placeholder="{i18n>ProductionFrozenZone}"
+												type="Number" valueState="Information" valueStateText="Number Only" change="onChange"/>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>PurchaseConstraint}" id="idPurchaseConstraint">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="PurchaseConstraint" change="onChange" items="{oModel>/PurchaseConstraint}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ApsPurchaseConstraint}" id="idApsPurchaseConstraint">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="ApsPurchaseConstraint" change="onChange" items="{oModel>/PurchaseConstraint}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ProductionConstraint}" id="idProductionConstraint">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="ProductionConstraint" change="onChange" items="{oModel>/ProductionConstraint}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ApsProductionConstraint}" id="idApsProductionConstraint">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="ApsProductionConstraint" change="onChange" items="{oModel>/ProductionConstraint}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ProductPriority}" id="idProductPriority">
+										<FlexBox renderType="Bare">
+											<!--<Input width="25%" id="ProductPriority" value="{oModel>/ProductPriority}" editable="true" placeholder="{i18n>ProductPriority}" type="Number"
+												valueState="Information" valueStateText="1-LOWEST to 9-HIGHEST" change="onChange" liveChange="onProductPriorityFormat"/>-->
+											<ActionSelect width="25%" id="ProductPriority" change="onChange" items="{oModel>/Zprodpriorityweightage}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ForecastRelevant}" id="idForecastRelevant">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="Forecast" change="onChange" items="{oModel>/ForecastRelevant}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ForecastRollRel}" id="idForecastRolRelevant">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="ForecastRolRel" change="onChange" items="{oModel>/ForecastRolRelevant}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>BOMRelevancy}" id="idBOMRelevancy">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="BomRelevancy" change="onChange" items="{oModel>/BOMRelevant}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>PlanningStrategy}" id="idPlanningStrategy">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="planningStrategy" change="onChange" items="{oModel>/PlanningStrategy}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>InventoryChannelStrategy}" id="idInventoryChannelStrategy">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="InventoryChannelStrategy" change="onChange" items="{oModel>/InventoryChannelStrategy}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>TargetStockLevelMethod}" id="idTargetStockLevelMethod">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="Target" change="onChange" items="{oModel>/TargetStockLevelMethod}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>SafetyStockMethod}" id="idSafetyStockMethod">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="Safety" change="onChange" items="{oModel>/SafetyStockMethod}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>StaticSafetyStockQuantity}" id="idStaticSafetyStockQuantity">
+										<FlexBox renderType="Bare">
+											<Input width="25%" id="StaticSafety" value="{oModel>/StaticSafetyStockQuantity}" editable="true" type="Number"
+												placeholder="{i18n>StaticSafetyStockQuantity}" valueState="Information" valueStateText="Only Number" change="onChange"/>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>RelativePercentageStaticSafetyStock}" id="idRelativePercentageStaticSafetyStock">
+										<FlexBox renderType="Bare">
+											<Input width="25%" id="RelativePercentage" value="{oModel>/RelativePercentageStaticSafetyStock}" editable="true" type="Number"
+												placeholder="{i18n>RelativePercentageStaticSafetyStock}" valueState="Information" valueStateText="Only Number" change="onChange"/>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>WFCSupplyMethod}" id="idWFCSupplyMethod">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="WFCSupply" change="onChange" items="{oModel>/WFCSupplyMethod}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>StaticWFCQuantity}" id="idStaticWFCQuantity">
+										<FlexBox renderType="Bare">
+											<Input id="StaticWFC" width="25%" value="{oModel>/StaticWFCQuantity}" editable="true" placeholder="{i18n>StaticWFCQuantity}" type="Number"
+												valueState="Information" valueStateText="Only Number"/>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>WFCDemandMethod}" id="idWFCDemandMethod">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="DemandMethod" change="onChange" items="{oModel>/WFCDemandMethod}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZMFCRELMODE}" id="idZMFCRELMODE">
+										<FlexBox renderType="Bare">
+											<Input width="25%" id="ZMFCRELMODE" placeholder="{i18n>ZMFCRELMODE}" change="onChange" showValueHelp="false"/>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZMFCTRGDISAGG}" id="idZMFCTRGDISAGG">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="ZMFCTRGDISAGG" change="onChange" items="{oModel>/MfcTrgtDisagg}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ForecastRelease}" id="idForecastRelease">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="ForecastRelease" change="onChange" items="{oModel>/ForecastRelease}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ConsumptionType}" id="idConsumptionType">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="Consumption" change="onChange" items="{oModel>/ConsumptionType}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ForecastConsumptionMode}" id="idForecastConsumptionMode">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="ConsumptionMode" change="onChange" items="{oModel>/ForecastConsumptionMode}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ForecastOffsetInMonths}" id="idForecastOffsetInMonths">
+										<FlexBox renderType="Bare">
+											<Input width="25%" id="ForecastsOffset" value="{oModel>/ForecastOffsetinMonths}" editable="true" placeholder="{i18n>ForecastOffsetInMonths}"
+												change="onChange" type="Number" valueState="Information" valueStateText="Number Only"/>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>MinOrderLeadTime}" id="idMinOrderLeadTime">
+										<FlexBox renderType="Bare">
+											<Input width="25%" id="MinOrder" value="{oModel>/MinOrderLeadTime}" editable="true" placeholder="{i18n>MinOrderLeadTime}" change="onChange"
+												type="Number" valueState="Information" valueStateText="Number Only"/>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>DemandReassignmentParentID}" id="idDemandReassignmentParentID">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="MaxDeliveryOverride" change="onChange" items="{oModel>/zmaxdeliveryoverride}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+											<!--<Input width="25%" type="Number" id="ReassignmentParent" placeholder="{i18n>DemandReassignmentParentID}" change="onChange"-->
+											<!--	valueHelpRequest="CreateProductValueHelp" showValueHelp="true" editable="true" valueHelpOnly="false" value="{oModel>/Zdemreassignparentid}"  />-->
+											<!--<Button icon="sap-icon://decline" tooltip="Clear" press="clearMaterialPlanner" visible="{= ${oModel>/Zdemreassignparentid} !== '' ? true : false }"/>-->
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>AggregateLocation}" id="idAggregateLocation">
+										<FlexBox renderType="Bare">
+											<Input id="aggregateLocation" width="25%" valueHelpOnly="false" editable="true" valueHelpRequest="CreateggregateValueHelp" change="onChange"
+												placeholder="{i18n>AggregateLocation}" showValueHelp="true" value="{oModel>/Zaggloc}"/>
+											<!--<Button icon="sap-icon://decline" tooltip="Clear" press="clearMaterialPlanner" visible="{= ${oModel>/Zaggloc} !== '' ? true : false }"/>-->
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZFORCASTCONGROUP}" id="idZFORCASTCONGROUP">
+										<FlexBox renderType="Bare">
+											<Input width="25%" id="ZFORCASTCONGROUP" placeholder="{i18n>ZFORCASTCONGROUP}" change="onChange" showValueHelp="false"/>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>StockingNodeTypeIndicator}" id="idStockingNodeTypeIndicator">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="Indicatortype" change="onChange" items="{oModel>/StockingNodeTypeIndicator}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>InventoryHoldingPolicy}" id="idInventoryHoldingPolicy">
+										<FlexBox renderType="Bare">
+											<ActionSelect id="Inventory" width="25%" change="onChange" items="{oModel>/InventoryHoldingPolicy}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>PeriodsBetweenReplenishment}" id="idPeriodsBetweenReplenishment">
+										<FlexBox renderType="Bare">
+											<Input width="25%" id="Replenishment" value="{oModel>/PeriodsBetweenReplenishment}" placeholder="{i18n>PeriodsBetweenReplenishment}"
+												editable="true" liveChange="onPeriodsBtwRep" maxLength='2' valueState="Information" valueStateText="1-12 WEEKS"/>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>StockingStockPolicyIndicator}" id="idStockingStockPolicyIndicator">
+										<FlexBox renderType="Bare">
+											<ActionSelect width="25%" id="policy" change="onChange" items="{oModel>/Stockingstockpolicyindicator}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>MpsSubId}" id="idMpsSubId">
+										<FlexBox renderType="Bare">
+											<ActionSelect id="MpsSubId" width="25%" change="onChange" items="{oModel>/MpsSubNetworkID}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ApsSubId}" id="idApsSubId">
+										<FlexBox renderType="Bare">
+											<ActionSelect id="ApsSubId" width="25%" change="onChange" items="{oModel>/ApsSubNetworkID}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>PlanningPlant}" id="idPlanningPlant">
+										<FlexBox renderType="Bare">
+											<Input id="planningPlant" width="25%" editable="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onPlanningPlant"
+												change="onChange" value="{oModel>/Zplanningplant}" placeholder="{i18n>PlanningPlant}"/>
+											<!--<Button icon="sap-icon://decline" tooltip="Clear" press="clearMaterialPlanner" visible="{= ${oModel>/Zplanningplant} !== '' ? true : false }"/>-->
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZUBUSS1}" id="idZUBUSS1">
+										<FlexBox renderType="Bare">
+											<Input width="25%" id="ZUBUSS1" placeholder="{i18n>ZUBUSS1}" change="onChange" showValueHelp="false"/>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZUBUSS2}" id="idZUBUSS2">
+										<FlexBox renderType="Bare">
+											<Input width="25%" id="ZUBUSS2" placeholder="{i18n>ZUBUSS2}" change="onChange" showValueHelp="false"/>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZUBUSS3}" id="idZUBUSS3">
+										<FlexBox renderType="Bare">
+											<Input width="25%" id="ZUBUSS3" placeholder="{i18n>ZUBUSS3}" change="onChange" showValueHelp="false"/>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZUPSIDEREL}" id="idZUPSIDEREL">
+										<FlexBox renderType="Bare">
+											<ActionSelect id="ZUPSIDEREL" width="25%" change="onChange" items="{oModel>/Zupsiderel}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZLEADTIMEPUSHMETHOD}" id="idZLEADTIMEPUSHMETHOD">
+										<FlexBox renderType="Bare">
+											<ActionSelect id="ZLEADTIMEPUSHMETHOD" width="25%" change="onChange" items="{oModel>/Zleadtimepushmethod}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<!--Add New Filed Lot Sizing Procedure and Target Sub Period-By Mannu-05/05/2021 -->
+									<f:FormElement label="{i18n>LotSizingProcedure}" id="idZLotSizingProcedure">
+										<FlexBox renderType="Bare">
+											<ActionSelect id="LotSizingProcedure" width="25%" change="onChange" items="{oModel>/ZLOT_SIZE_PROCEDURE}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<f:FormElement label="{i18n>TargetSubPeriodofSupply}" id="idTargetSubPeriodofSupply">
+										<FlexBox renderType="Bare">
+											<Input width="25%" id="TargetSubPeriodofSupply" value="{oModel>/ZTECH_WEEKS}" editable="true" placeholder="{i18n>TargetSubPeriodofSupply}"
+												type="Number" valueState="Information" valueStateText="Number Only" change="onChange"/>
+										</FlexBox>
+									</f:FormElement>
+									<!--End of Changes -->
+									<!--New Changes to Add Filed Safter Stock Disagg(By mannu-27/07/2021)-->
+									<f:FormElement label="{i18n>SafetyStockDisagg}" id="idSafetyStockDisagg">
+										<FlexBox renderType="Bare">
+											<ActionSelect id="SafetyStockDisag" width="25%" change="onChange" items="{oModel>/ZSAFETY_STOCK}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<!--End of new changes-->
+									<!--New Changes to Add Filed Max Inventory Relevant(By mannu-29/03/2022)-->
+									<f:FormElement label="{i18n>MaxInventoryRel}" id="idMaxInventory">
+										<FlexBox renderType="Bare">
+											<ActionSelect id="MaxInventoryRelevant" width="25%" change="onChange" items="{oModel>/ZMAXINVENTORYRELEVANT}">
+												<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"/>
+											</ActionSelect>
+										</FlexBox>
+									</f:FormElement>
+									<!--End of new changes-->
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button type="Emphasized" id="Submit" text="{i18n>SAVE}" press="onsaveEdit"></Button>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

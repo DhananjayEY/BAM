@@ -1,0 +1,99 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified"
+	controllerName="com.ey.bamlocattr.controller.Create" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page navButtonPress="onNavBack" showNavButton="true" title="{i18n>Create}" showHeader="{flpCheck>/isRunningOnFlp}">
+				<HBox justifyContent="End" alignItems="Start" class="sapUiTinyMarginTop sapUiTinyMarginBottom">
+					<!--<HBox alignItems="Start" height="100%" justifyContent="Center">
+						<MessageStrip id="Material"></MessageStrip>
+					</HBox>-->
+						<u:FileUploader id="fileUploader" name="myFileUpload" uploadUrl="upload/" tooltip="Upload your file to the local server"
+							uploadComplete="handleUploadComplete" change="handleChange" typeMissmatch="handleTypeMissmatch" style="Transparent" buttonText="Browse"
+							placeholder="Choose a XLSX file"></u:FileUploader>
+						<UploadCollection id="ucDownloadTemplate" visible="false">
+							<items>
+								<UploadCollectionItem fileName="DownloadTemplate.csv" id="uciDownloadTemplate" enableEdit="false" visibleDelete="false" enableDelete="false"
+									visibleEdit="false" selected="true" url="templates/DownloadTemplate.csv" mimeType="application/msexcel"/>
+							</items>
+						</UploadCollection>
+						<Button type="Transparent" text="Upload" icon="sap-icon://upload" press="handleUploadPress"/>
+						<Button type="Transparent" icon="sap-icon://download" id="btnDownloadTemplate" press="onDownloadTemplate" text="Download Template"/>
+				</HBox>
+				<content>
+					<ScrollContainer width="100%" height="80%" horizontal="true" vertical="true" focusable="true">
+						<Table id="LocalTable" items="{ path: 'oModel>/oData', templateShareable: true }" growing="true" 
+								growingScrollToLoad="true">
+							<columns>
+								<Column hAlign="Center" width="5rem">
+									<Text text="{i18n>Action}"/>
+								</Column>
+								<Column id="statusCol" hAlign="Center" width="5rem" visible="false">
+									<Text text="{i18n>Status}"/>
+								</Column>
+								<Column width="12rem" hAlign="Center">
+									<Text text="{i18n>Location}"/>
+								</Column>
+								<Column width="17rem" hAlign="Center">
+									<Text text="{i18n>SupplyLocationDescription}"/>
+								</Column>
+								<!--<Column width="12rem" hAlign="Center">
+									<Text text="{i18n>MacroLocation}"/>
+								</Column>-->
+								<Column width="12rem" hAlign="Center">
+									<Text text="{i18n>SupplyAggrLocationType}"/>
+								</Column>
+								<Column width="12rem" hAlign="Center">
+									<Text text="{i18n>SupplyLocationPlatform}"/>
+								</Column>
+								<Column width="12rem" hAlign="Center">
+									<Text text="{i18n>SupplyActivity}"/>
+								</Column>
+								<Column width="12rem" hAlign="Center">
+									<Text text="{i18n>SupplyRegionID}"/>
+								</Column>
+								<Column width="12rem" hAlign="Center">
+									<Text text="{i18n>SupplyRegionDescription}"/>
+								</Column>
+							</columns>
+							<items >
+								<ColumnListItem >
+									<cells>
+										<Button id="Delete" icon="sap-icon://delete" type="Transparent" press="onDelete" enabled="{oModel>disableOnSubmit}"/>
+										<core:Icon src="{oModel>icon}" color="{oModel>iconColor}" size="1.5rem" press="onIconPress"/>
+										<Input valueHelpRequest="LocationValueHelp" placeholder="Enter Location ID" value="{oModel>Location}" showValueHelp="false" enabled="{oModel>disableOnSubmit}" ></Input>
+										<Input value="{oModel>SupplyLocationDescriptionkey}" placeholder="Enter Supply Location Description" enabled="{oModel>disableOnSubmit}" ></Input>
+										<!--<Input value="{oModel>MacroLocation}" placeholder="{i18n>MacroLocation}" enabled="{oModel>disableOnSubmit}" />-->
+										<ActionSelect enabled="{oModel>disableOnSubmit}" selectedKey="{oModel>SupplyAggrLocationTypekey}"   change="onChangeSupplyLoctype" items="{path: 'oModel>/SupplyAggrLocationType' , templateShareable:true}" >
+											<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}" />
+										</ActionSelect>
+										<ActionSelect enabled="{oModel>disableOnSubmit}" selectedKey="{oModel>SupplyLocationPlatformkey}"  change="onChangeSupplyLocform" items="{path:'oModel>/SupplyLocationPlatform', templateShareable:true}" >
+											<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}" />
+										</ActionSelect>
+										<ActionSelect enabled="{oModel>disableOnSubmit}" selectedKey="{oModel>SupplyActivitykey}"  change="onChangeSupplyact" items="{path:'oModel>/SupplyActivity', templateShareable:true}" >
+											<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}" />
+										</ActionSelect>
+										<ActionSelect enabled="{oModel>disableOnSubmit}" selectedKey="{oModel>SupplyRegionkey}"  change="onChangesupplyreg" items="{path:'oModel>/SupplyRegion', templateShareable:true}" >
+											<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}" />
+										</ActionSelect>
+										<Input value="{oModel>SupplyRegionDescription}" placeholder="Enter Region Description" enabled="false" ></Input>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</ScrollContainer>
+					<core:Icon src="sap-icon://add" class="ts_add" press="onAddCorp">
+						<core:layoutData>
+							<FlexItemData growFactor="1"/>
+						</core:layoutData>
+					</core:Icon>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button type="Emphasized" id="Submit" text="SUBMIT" press="onSubmit"></Button>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

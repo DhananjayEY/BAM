@@ -1,0 +1,325 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns="sap.m"
+	controllerName="com.ey.bamlocprdattr.controller.Display" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page navButtonPress="onNavBack" showNavButton="true" title="Title">
+				<customHeader>
+					<Bar>
+						<contentLeft>
+							<Button type="Back" press="onNavBack" visible="{flpCheck>/isRunningOnFlp}"/>
+						</contentLeft>
+						<contentMiddle>
+							<Text text="{i18n>Display}"/>
+						</contentMiddle>
+						<contentRight>
+							<ActionSelect items='{DisplayModel>/results}' change="onSelectionChange">
+								<core:Item text="{DisplayModel>Matnr}"/>
+							</ActionSelect>
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<content>
+					<f:Form id="idSelectedObj" editable="true">
+						<f:layout>
+							<!--<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"-->
+							<!--	emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>-->
+							<f:ColumnLayout columnsM="1" columnsL="2" columnsXL="3"/>
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer>
+								<f:formElements>
+									<f:FormElement label="{i18n>LocationID}" id="disLocationID">
+										<f:fields>
+											<Text text="{DisplayModel>Locno}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ProductID}" id="disProductID">
+										<f:fields>
+											<Text text="{DisplayModel>Matnr}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>MasterScheduler}" id="disMasterScheduler">
+										<f:fields>
+											<Text text="{DisplayModel>Zmastscheduler}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>DeploymentPlanner}" id="disDeploymentPlanner">
+										<f:fields>
+											<Text text="{DisplayModel>Zdeploymentplanner}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZPRODSCHEDULER}" id="disZPRODSCHEDULER">
+										<f:fields>
+											<Text text="{DisplayModel>Zprodscheduler}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZMATERIALPLANNER}" id="disZMATERIALPLANNER">
+										<f:fields>
+											<Text text="{DisplayModel>Zmaterialplanner}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ProductionFrozenZone}" id="disProductionFrozenZone">
+										<f:fields>
+											<Text text="{DisplayModel>Zfrozenhorizon}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>PurchaseConstraint}" id="disPurchaseConstraint">
+										<f:fields>
+											<Text text="{DisplayModel>Ztechallocation}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ApsPurchaseConstraint}" id="disApsPurchaseConstraint">
+										<f:fields>
+											<Text text="{DisplayModel>ZtechallocationAps}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ProductPriority}" id="disProductPriority">
+										<f:fields>
+											<Text text="{DisplayModel>Zprodpriorityweightage}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ForecastRelevant}" id="disForecastRelevant">
+										<f:fields>
+											<Text text="{DisplayModel>Zforecastrelevant}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ForecastRollRel}" id="disForecastRollRel">
+										<f:fields>
+											<Text text="{DisplayModel>ZforecastRollRel}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement visible="false" label="{i18n>PlanningStrategy}" id="disPlanningStrategy">
+										<f:fields>
+											<Text text="{DisplayModel>Zplanningstrategy}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>BOMRelevancy}" id="disBOMRelevancy">
+										<f:fields>
+											<Text text="{DisplayModel>Zbomerel}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>TargetStockLevelMethod}" id="disTargetStockLevelMethod">
+										<f:fields>
+											<Text text="{DisplayModel>Ztargetstocktype}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>SafetyStockMethod}" id="disSafetyStockMethod">
+										<f:fields>
+											<Text text="{DisplayModel>Zsafetystocktype}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>StaticSafetyStockQuantity}" id="disStaticSafetyStockQuantity">
+										<f:fields>
+											<Text text="{DisplayModel>Zsafetystockquantity}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>RelativePercentageStaticSafetyStock}" id="disRelativePercentageStaticSafetyStock">
+										<f:fields>
+											<Text text="{DisplayModel>Zrelativepercentage}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>WFCSupplyMethod}" id="disWFCSupplyMethod">
+										<f:fields>
+											<Text text="{DisplayModel>Zweeksofforwardcoverage}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>StaticWFCQuantity}" id="disStaticWFCQuantity">
+										<f:fields>
+											<Text text="{DisplayModel>Zwfcquantity}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>WFCDemandMethod}" id="disWFCDemandMethod">
+										<f:fields>
+											<Text text="{DisplayModel>Zwfcdemand}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZMFCTRGDISAGG}" id="disZMFCTRGDISAGG">
+										<f:fields>
+											<Text text="{DisplayModel>Zmfctrgdisagg}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ForecastRelease}" id="disForecastRelease">
+										<f:fields>
+											<Text text="{DisplayModel>Zdemandplacementwk}"/>
+										</f:fields>
+									</f:FormElement>
+									<!-- New Changes Add Filed Lot Sizing Procedure-By Mannu-5/5/2021 -->
+									<f:FormElement label="{i18n>LotSizingProcedure}" id="disLotSizingProcedure">
+										<f:fields>
+											<Text text="{DisplayModel>ZLOT_SIZE_PROCEDURE}"/>
+										</f:fields>
+									</f:FormElement>
+									<!--End of Changes -->
+								<!--New Changes to Add filed New attribute Safety Stock Disagg- By Mannu-27/7/2021 -->
+									<f:FormElement label="{i18n>SafetyStockDisagg}" id="disSafetyStockDisagg">
+										<f:fields>
+											<Text text="{DisplayModel>ZSAFETY_STOCK}"/>
+										</f:fields>
+									</f:FormElement>
+									<!--End of Changes -->
+									
+									<!--<f:FormElement label="{i18n>OldLocation}">-->
+									<!--	<f:fields>-->
+									<!--		<Text text="{DisplayModel>Sort1}"/>-->
+									<!--	</f:fields>-->
+									<!--</f:FormElement>-->
+									<!--<f:FormElement label="{i18n>ExternalRecieptFrozenZone}">
+										<f:fields>
+											<Text text="{DisplayModel>Zfrozenhorizonextreceipt}"></Text>
+										</f:fields>
+									</f:FormElement>-->
+								</f:formElements>
+								<f:layoutData>
+									<f:GridContainerData halfGrid="true"></f:GridContainerData>
+								</f:layoutData>
+							</f:FormContainer>
+							<f:FormContainer>
+								<f:formElements>
+									<f:FormElement label="{i18n>ConsumptionType}" id="disConsumptionType">
+										<f:fields>
+											<Text text="{DisplayModel>Zconsumptiontype}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ForecastConsumptionMode}" id="disForecastConsumptionMode">
+										<f:fields>
+											<Text text="{DisplayModel>Zfcstconsmode}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ForecastOffsetInMonths}" id="disForecastOffsetInMonths">
+										<f:fields>
+											<Text text="{DisplayModel>Zmonthoffset}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>MinOrderLeadTime}" id="disMinOrderLeadTime">
+										<f:fields>
+											<Text text="{DisplayModel>Zminorderleadtime}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>DemandReassignmentParentID}" id="disDemandReassignmentParentID">
+										<f:fields>
+											<Text text="{DisplayModel>zmaxdeliveryoverride}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>AggregateLocation}" id="disAggregateLocation">
+										<f:fields>
+											<Text text="{DisplayModel>Zaggloc}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZFORCASTCONGROUP}" id="disZFORCASTCONGROUP">
+										<f:fields>
+											<Text text="{DisplayModel>Zforcastcongroup}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>StockingNodeTypeIndicator}" id="disStockingNodeTypeIndicator">
+										<f:fields>
+											<Text text="{DisplayModel>Zstockingnodetype}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>InventoryHoldingPolicy}" id="disInventoryHoldingPolicy">
+										<f:fields>
+											<Text text="{DisplayModel>Zinvholdingpolicy}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>PeriodsBetweenReplenishment}" id="disPeriodsBetweenReplenishment">
+										<f:fields>
+											<Text text="{DisplayModel>Zpbr}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>StockingStockPolicyIndicator}" id="disStockingStockPolicyIndicator">
+										<f:fields>
+											<Text text="{DisplayModel>Zsafetystockpolicy}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>MpsSubId}" id="disMpsSubId">
+										<f:fields>
+											<Text text="{DisplayModel>Zplunitid}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ApsSubId}" id="disApsSubId">
+										<f:fields>
+											<Text text="{DisplayModel>Zapssubnetwork}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ProductionConstraint}" id="disProductionConstraint">
+										<f:fields>
+											<Text text="{DisplayModel>Zformallocation}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ApsProductionConstraint}" id="disApsProductionConstraint">
+										<f:fields>
+											<Text text="{DisplayModel>ZformallocationAps}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>InventoryChannelStrategy}" id="disInventoryChannelStrategy">
+										<f:fields>
+											<Text text="{DisplayModel>Ziochannelstrategy}"/>
+										</f:fields>
+									</f:FormElement>
+									<!--<f:FormElement label="{i18n>IBPSupplyRelevant}">
+										<f:fields>
+											<Text text="{DisplayModel>Zibpsupplyrelevant}"/>
+										</f:fields>
+									</f:FormElement>-->
+									<!--<f:FormElement label="{i18n>BOMRelevancy}" id="disBOMRelevancy">
+										<f:fields>
+											<Text text="{DisplayModel>Zbomerel}"/>
+										</f:fields>
+									</f:FormElement>-->
+									<f:FormElement label="{i18n>AggIDChangeIndicator}" id="disAggIDChangeIndicator">
+										<f:fields>
+											<Text text="{DisplayModel>ZaggIdChg}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZMFCRELMODE}" id="disZMFCRELMODE">
+										<f:fields>
+											<Text text="{DisplayModel>Zmfcrelmode}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZUPSIDEREL}" id="disZUPSIDEREL">
+										<f:fields>
+											<Text text="{DisplayModel>Zupsiderel}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZUBUSS1}" id="disZUBUSS1">
+										<f:fields>
+											<Text text="{DisplayModel>Zubuss1}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZUBUSS2}" id="disZUBUSS2">
+										<f:fields>
+											<Text text="{DisplayModel>Zubuss2}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZUBUSS3}" id="disZUBUSS3">
+										<f:fields>
+											<Text text="{DisplayModel>Zubuss3}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{i18n>ZLEADTIMEPUSHMETHOD}" id="disZLEADTIMEPUSHMETHOD">
+										<f:fields>
+											<Text text="{DisplayModel>Zleadtimepushmethod}"/>
+										</f:fields>
+									</f:FormElement>
+									<!--New Changes to Add filed Target Sub Period of Supply- By Mannu-5/5/2021 -->
+									<f:FormElement label="{i18n>TargetSubPeriodofSupply}" id="disTargetSubPeriodofSupply">
+										<f:fields>
+											<Text text="{DisplayModel>ZTECH_WEEKS}"/>
+										</f:fields>
+									</f:FormElement>
+									<!--End of Changes -->
+									<!--New Changes to Add filed Max Inventory Relevant- By Mannu-29/03/2022 -->
+									<f:FormElement label="{i18n>MaxInventoryRel}" id="disMaxInventoryRelevant">
+										<f:fields>
+											<Text text="{DisplayModel>Zmaxinventoryrelevant}"/>
+										</f:fields>
+									</f:FormElement>
+									<!--End of Changes -->
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

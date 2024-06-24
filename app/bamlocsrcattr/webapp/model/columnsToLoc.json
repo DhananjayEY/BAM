@@ -1,0 +1,12 @@
+{
+	"cols": [
+		{
+			"label": "Location ID",
+			"template": "Locno_To",
+			"width": "10rem"
+		}, {
+			"label": "Location Description",
+			"template": "Locfromdesc"
+		}
+	]
+}

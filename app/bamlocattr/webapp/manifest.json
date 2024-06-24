@@ -1,0 +1,174 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "com.ey.bamlocattr",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.13.6",
+      "toolsId": "e7d786b4-eebb-4344-acfb-345b5c749066"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/catalog/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "bamlocattr-display": {
+          "semanticObject": "bamlocattr",
+          "action": "display",
+          "title": "{{flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.120.15",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.ey.bamlocattr.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "security": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {
+          "defaultBindingMode": "OneWay"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ],
+      "js": [
+        {
+          "uri": "js/xlsx.full.min.js"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "com.ey.bamlocattr.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false,
+        "path": "com.ey.bamlocattr.view"
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "Mainlocation",
+          "target": "Mainlocation"
+        },
+        {
+          "pattern": "Create",
+          "name": "Create",
+          "target": "Create"
+        },
+        {
+          "pattern": "Edit",
+          "name": "Edit",
+          "target": "Edit"
+        },
+        {
+          "pattern": "Display",
+          "name": "Display",
+          "target": "Display"
+        }
+      ],
+      "targets": {
+        "Mainlocation": {
+          "viewName": "Mainlocation",
+          "viewId": "Mainlocation"
+      },
+      "Create": {
+          "viewType": "XML",
+          "viewName": "Create",
+          "viewId": "Create"
+      },
+      "Edit": {
+          "viewType": "XML",
+          "viewName": "Edit",
+          "viewId": "Edit"
+      },
+      "Display": {
+          "viewType": "XML",
+          "viewName": "Display",
+          "viewId": "Display"
+      }
+      }
+    },
+    "rootView": {
+      "viewName": "com.ey.bamlocattr.view.Mainlocation",
+      "type": "XML",
+      "async": true,
+      "id": "Mainlocation1"
+    }
+  }
+}

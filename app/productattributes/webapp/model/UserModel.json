@@ -1,0 +1,13 @@
+{
+	"cols": [{
+		"label": "User",
+		"template": "Bname",
+		"width": "10rem"
+	},{
+		"label": "Last name",
+		"template": "Name_Last"
+	},{
+		"label": "First name",
+		"template": "Name_First"
+	}]
+}

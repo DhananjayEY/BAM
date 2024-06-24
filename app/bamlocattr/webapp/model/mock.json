@@ -1,0 +1,84 @@
+{
+	"items": [{
+			"Sday": "5000000 ",
+			"Eday": "Submitted ",
+			"startdate": "5/31/17",
+			"enddate": "6/1/17",
+			"Absence Hours": "TRISHA ",
+			"Quota Used (hrs)": "22.00 EA",
+			"Year": "2017 ",
+			"Total Quota": "240  ",
+			"Usage": "11",
+			"Remaining Quota": "214",
+			"Gross":"114.24 USD"
+
+		}, {
+			"Sday": "5000000 ",
+			"Eday": "Approved  ",
+			"startdate": "1/31/17",
+			"enddate": "4/1/17",
+			"Absence Hours": "Rob",
+			"Quota Used (hrs)": "18.00 EA",
+			"Year": "2016 ",
+			"Total Quota": "250  ",
+			"Usage": "16",
+			"Remaining Quota": "284",
+			"Gross":"114.24 USD"
+
+		}, {
+			"Sday": "5000000 ",
+			"Eday": "Rejected  ",
+			"startdate": "7/31/17",
+			"enddate": "8/1/17",
+			"Absence Hours": "krishna ",
+			"Quota Used (hrs)": "15.00 EA",
+			"Year": "2015 ",
+			"Total Quota": "240  ",
+			"Usage": "16",
+			"Remaining Quota": "224",
+			"Gross":"114.24 USD"
+
+		}, {
+			"Sday": "5000000 ",
+			"Eday": "composing  ",
+			"startdate": "5/31/17",
+			"enddate": "6/1/17",
+			"Absence Hours": "vikas ",
+			"Quota Used (hrs)": "16.00 EA",
+			"Year": "2013 ",
+			"Total Quota": "240  ",
+			"Usage": "16",
+			"Remaining Quota": "224",
+			"Gross":"114.24 USD"
+
+		}, {
+			"Sday": "500000045 ",
+			"Eday": "approved  ",
+			"startdate": "8/31/17",
+			"enddate": "11/1/17",
+			"Absence Hours": "Lara ",
+			"Quota Used (hrs)": "17.00 EA",
+			"Year": "2019 ",
+			"Total Quota": "240  ",
+			"Usage": "16",
+			"Remaining Quota": "224",
+			"Gross":"114.24 USD"
+
+		}, {
+			"Sday": "500000021",
+			"Eday": "Rejected ",
+			"startdate": "6/31/17",
+			"enddate": "8/1/17",
+			"Absence Hours": "Trump",
+			"Quota Used (hrs)": "21.00 EA",
+			"Year": "2017 ",
+			"Total Quota": "240  ",
+			"Usage": "16",
+			"Remaining Quota": "224",
+			"Gross":"114.24 USD"
+
+		}
+
+	]
+
+}

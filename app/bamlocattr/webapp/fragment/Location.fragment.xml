@@ -1,0 +1,56 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:u="sap.ui.unified" xmlns:t="sap.ui.table" xmlns:m="sap.m"
+	xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core" xmlns:ci="com.ey.bamlocattr.controls">
+	<ValueHelpDialog title="Location ID" ok="onPrdLvlF4Ok" cancel="onPrdLvlF4Cancel" afterClose="onPrdLvlF4AfterClose" supportRanges="true"
+		key="LocID" descriptionKey="Name1" supportMultiselect="true">
+		<filterBar>
+			<fb:FilterBar header="Search" search="onLocaF4FltSrch" filtersDialogClosed="onPrdLvlF4FltX" showClearButton="true"
+				showFilterConfiguration="false">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="G1" groupTitle="Location" name="E" label="Location ID" visibleInFilterBar="true">
+						<fb:control>
+							<ci:MultiInput id="name1ID" name="LocID" placeholder="Enter Location ID" showValueHelp="false"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G1" groupTitle="Location " name="F" label="Supply Location Description" visibleInFilterBar="true">
+						<fb:control>
+							<m:MultiInput id="idPrdLvlID" name="Name1" change="onMatnr1SelectChange" placeholder="Enter Location Description"
+								showValueHelp="false" />
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="ZAGLOCTYPE" label="Supply Location Type" visibleInFilterBar="true"
+						id="idGroupItemAggLocType">
+						<fb:control>
+							<m:ActionSelect 
+								id="idLocationType" 
+								change="onAggTypeSelection"
+								items="{path: 'oModel>/SupplyAggrLocationType', templateShareable:true}" 
+								name="ZAGLOCTYPE">
+									<core:Item
+										key="{oModel>ParamValue}" 
+										text="{oModel>ParamValue} - {oModel>ParamText}"/>
+							</m:ActionSelect>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<!--<fb:FilterGroupItem groupName="__$INTERNAL$" name="G" label="IBP Supply Location Relevancy" visibleInFilterBar="true">
+						<fb:control>
+							<m:ActionSelect 
+								id="idSupplyLocationPlatform" 
+								items="{path: 'oModel>/SupplyLocationPlatform', templateShareable:true}" 
+								name="Zsupplylocplatform">
+									<core:Item
+										key="{oModel>ParamValue}" 
+										text="{oModel>ParamValue} - {oModel>ParamText}"/>
+							</m:ActionSelect>
+						</fb:control>
+					</fb:FilterGroupItem>-->
+					<!--<fb:FilterGroupItem groupName="G1" groupTitle="Location" name="C" label="Logsys" visibleInFilterBar="true">-->
+					<!--	<fb:control>-->
+					<!--		<ci:MultiInput id="idPrdLvlDscr" name="ProdLvelIDDesc" value="" change="onMatnr1SelectChange" placeholder="Enter location system"-->
+					<!--			liveChange="ProductLevelDescription"/>-->
+					<!--	</fb:control>-->
+					<!--</fb:FilterGroupItem>-->
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>

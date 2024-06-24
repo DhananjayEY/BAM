@@ -1,0 +1,181 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "com.ey.bamlocsrcattr",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.13.6",
+      "toolsId": "db1799ef-6619-4e4a-8eab-7dc3b3bdd987"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/catalog/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "bamlocsrcattr-display": {
+          "semanticObject": "bamlocsrcattr",
+          "action": "display",
+          "title": "{{flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.120.15",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.ey.bamlocsrcattr.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "temp": {
+          "type": "sap.ui.model.json.JSONModel",
+          "settings": {
+              "defaultBindingMode": "OneWay"
+          }
+      },
+      "security": {
+          "type": "sap.ui.model.json.JSONModel",
+          "settings": {
+              "defaultBindingMode": "OneWay"
+          }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ],
+      "js": [
+          {
+              "uri": "js/xlsx.full.min.js"
+          }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "com.ey.bamlocsrcattr.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false,
+        "path": "com.ey.bamlocsrcattr.view"
+      },
+      "routes": [
+        {
+          "name": "LocationAtrributes",
+          "pattern": "",
+          "target": "LocationAtrributes"
+      },
+      {
+          "name": "CreateLocation",
+          "pattern": "Create",
+          "target": "CreateLocation"
+      },
+      {
+          "name": "DisplayLocation",
+          "pattern": "Display",
+          "target": "DisplayLocation"
+      },
+      {
+          "name": "EditLocationSource",
+          "pattern": "Edit",
+          "target": "EditLocationSource"
+      }
+      ],
+      "targets": {
+        "RootView": {
+          "viewType": "XML",
+          "viewName": "RootView"
+      },
+      "LocationAtrributes": {
+          "viewType": "XML",
+          "viewName": "LocationAtrributes"
+      },
+      "CreateLocation": {
+          "viewType": "XML",
+          "viewName": "CreateLocation"
+      },
+      "DisplayLocation": {
+          "viewType": "XML",
+          "viewName": "DisplayLocation"
+      },
+      "EditLocationSource": {
+          "viewType": "XML",
+          "viewName": "EditLocationSource"
+      }
+      }
+    },
+    "rootView": {
+      "viewName": "com.ey.bamlocsrcattr.view.RootView",
+      "type": "XML",
+      "async": true,
+      "id": "RootView"
+    }
+  }
+}

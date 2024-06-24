@@ -1,0 +1,40 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ViewSettingsDialog confirm="handleViewSettingsDialogConfirm" resetFilters="handleResetFilter">
+		<sortItems >
+			<ViewSettingsItem text="Location ID" key="Locno"/>
+			<ViewSettingsItem text="Product ID" key="Matnr"/>
+			<ViewSettingsItem text="Master Scheduler" key="Zmastscheduler"/>
+			<ViewSettingsItem text="Deployment Planner" key="Zdeploymentplanner"/>
+			<ViewSettingsItem text="Production Frozen Zone" key="Zfrozenhorizon"/>
+			<ViewSettingsItem text="Purchase Constraint" key="Ztechallocation"/>
+			<ViewSettingsItem text="Production Constraint" key="Zformallocation"/>
+			<ViewSettingsItem text="Product Priority" key="Zprodpriorityweightage"/>
+			<ViewSettingsItem text="Forecast Relevant" key="Zforecastrelevant"/>
+			<ViewSettingsItem text="BOM Relevancy" key="Zbomerel"/>
+			<ViewSettingsItem text="Planning Strategy" key="Zplanningstrategy"/>
+			<ViewSettingsItem text="Inventory Channel Strategy" key="Ziochannelstrategy"/>
+			<ViewSettingsItem text="Target Stock Level Method" key="Ztargetstocktype"/>	
+			<ViewSettingsItem text="Safety Stock Method" key="Zsafetystocktype"/>
+			<ViewSettingsItem text="Static Safety Stock Quantity" key="Zsafetystockquantity"/>
+			<ViewSettingsItem text="Relative Percentage Static Safety Stock " key="Zrelativepercentage"/>
+			<ViewSettingsItem text="MFC Demand Method" key="Zwfcdemand"/>			
+			<ViewSettingsItem text="MFC Supply " key="Zweeksofforwardcoverage"/>				
+			<ViewSettingsItem text="Forecast Release" key="Zdemandplacementwk"/>
+			<ViewSettingsItem text="Forecast Consumption Mode" key="Zfcstconsmode"/>
+			<ViewSettingsItem text="Forecast Offset In Months" key="Zmonthoffset"/>
+			<ViewSettingsItem text="Min Order Lead Time" key="Zminorderleadtime"/>	
+			<ViewSettingsItem text="Demand Reassignment Parent ID" key="Zdemreassignparentid"/>				
+			<ViewSettingsItem text="Aggregate Location " key="Zaggloc"/>
+			<ViewSettingsItem text="Consumption Type" key="Zconsumptiontype"/>
+			<ViewSettingsItem text="Stocking Node Type Indicator" key="Zstockingnodetype"/>
+		    <ViewSettingsItem text="Inventory Holding Policy" key="Zinvholdingpolicy"/>				
+			<ViewSettingsItem text="Periods Between Replenishment" key="Zpbr"/>					
+			<ViewSettingsItem text="Static MFC Quantity" key="Zwfcquantity"/>
+			<ViewSettingsItem text="External Reciept Frozen Zone" key="Zfrozenhorizonextreceipt"/>
+			<ViewSettingsItem text="Stocking Stock Policy Indicator" key="Zsafetystockpolicy"/>				
+			<ViewSettingsItem text="Planning Plant" key="Zplanningplant"/>
+			<ViewSettingsItem text="Max Inventory Relevant" key="Zmaxinventoryrelevant"/>
+			<!--<ViewSettingsItem text="IBP Supply Relevant" key="Zibpsupplyrelevant"/>-->
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

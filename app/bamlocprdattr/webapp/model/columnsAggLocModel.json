@@ -1,0 +1,12 @@
+{
+	"cols": [
+		{
+			"label": "Agg. Location",
+			"template": "Locno",
+			"width": "10rem"
+		}, {
+			"label": "Agg. Location Description",
+			"template": "Name1"
+		}
+	]
+}

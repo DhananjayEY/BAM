@@ -1,0 +1,118 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified"
+	controllerName="com.ey.bamlocsrcattr.controller.CreateLocation" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page enableScrolling="false" navButtonPress="onNavBack" showNavButton="true" title="{i18n>CreateLocSourceTitle}"
+		showHeader="{flpCheck>/isRunningOnFlp}">
+		<HBox justifyContent="End" alignItems="Start" class="sapUiTinyMarginTop sapUiTinyMarginBottom">
+			<!--<HBox alignItems="Start" height="100%" justifyContent ="Center">
+				<MessageStrip
+					id="Material">
+				</MessageStrip>
+			</HBox>-->
+			<u:FileUploader id="fileUploader" name="myFileUpload" uploadUrl="upload/" tooltip="Upload your file to the local server"
+				uploadComplete="handleUploadComplete" change="handleChange" typeMissmatch="handleTypeMissmatch" style="Transparent" buttonText="Browse"
+				placeholder="Choose a XLSX file" width="15rem"/>
+			<Button type="Transparent" text="Upload" icon="sap-icon://upload" press="handleUploadPress"/>
+			<Button type="Transparent" icon="sap-icon://download" id="btnDownloadTemplate" press="onDownloadTemplate" text="Download Template"/>
+		</HBox>
+		<content>
+			<ScrollContainer width="100%" height="80%" horizontal="true" vertical="true" focusable="true">
+				<Table id="createLocation" sticky="ColumnHeaders" items="{/root}" growing="true" growingScrollToLoad="true">
+					<columns>
+						<Column hAlign="Center" width="5rem">
+							<Text text="{i18n>Action}"/>
+						</Column>
+						<Column id="statusCol" hAlign="Center" width="5rem" visible="false">
+							<Text text="{i18n>Status}"/>
+						</Column>
+						<Column hAlign="Center" width="12rem">
+							<Text text="{i18n>LOCFR}" class="asterisk"/>
+						</Column>
+					<!--	<Column hAlign="Center" width="12rem">
+							<Text text="{i18n>OLDFROM}" class="asterisk"/>
+						</Column>-->
+						<Column hAlign="Center" width="12rem">
+							<Text text="{i18n>LOCID}" class="asterisk"/>
+						</Column>
+						<!--<Column hAlign="Center" width="12rem">
+							<Text text="{i18n>OLDLOCATION}" class="asterisk"/>
+						</Column>-->
+						<Column hAlign="Center" width="12rem">
+							<Text text="{i18n>MOTID}" class="asterisk"/>
+						</Column>
+						<Column hAlign="Center" width="12rem">
+							<Text text="{i18n>PRDID}" class="asterisk"/>
+						</Column>
+						<Column hAlign="Center" width="12rem">
+							<Text text="{i18n>ZTRANSPORTATIONCONST}"/>
+						</Column>
+						<Column hAlign="Center" width="12rem">
+							<Text text="{i18n>TMAXLOTSIZE}"/>
+						</Column>
+						<Column hAlign="Center" width="12rem">
+							<Text text="{i18n>TMINLOTSIZE}"/>
+						</Column>
+						<Column hAlign="Center" width="12rem">
+							<Text text="{i18n>TROUNDING}"/>
+						</Column>
+						<Column hAlign="Center" width="12rem">
+							<Text text="{i18n>TLEADTIME}"/>
+						</Column>
+						<Column hAlign="Center" width="12rem">
+							<Text text="{i18n>ZAPSTLANEOVRD}"/>
+						</Column>
+						<Column hAlign="Center" width="12rem">
+							<Text text="{i18n>ZFROZENHORIZONTRECEIPT}"/>
+						</Column>
+					</columns>
+					<items >
+						<ColumnListItem >
+							<cells>
+								<Button id="Delete" icon="sap-icon://delete" type="Transparent" press="onDelete" enabled="{disableOnSubmit}"/>
+								<core:Icon src="{icon}" color="{iconColor}" size="1.5rem" press="onIconPress"/>
+								<Input id="idLocationFrom" value="{LocationFrom}" width="10rem" showValueHelp="true" placeholder="Location From"
+									valueHelpRequest="onLocationFromF4" valueState="{materialState}" enabled="{disableOnSubmit}" liveChange="onLiveChange"/>
+								<!--<Input id="idOldLocationFrom" value="{OldLocationFrom}" width="10rem" showValueHelp="true" placeholder="Location From"
+									valueHelpRequest="onLocationFromF4" valueState="{materialState}" enabled="{disableOnSubmit}" liveChange="onLiveChange"/>-->
+								<Input id="idLocationTo" value="{LocationTo}" width="10rem" showValueHelp="true" placeholder="Location To" valueHelpRequest="onLocationToF4"
+									valueState="{materialState}" enabled="{disableOnSubmit}" liveChange="onLiveChange"/>
+								<!--<Input id="idOldLocationTo" value="{OldLocationTo}" width="10rem" showValueHelp="true" placeholder="Location From"
+									valueHelpRequest="onLocationFromF4" valueState="{materialState}" enabled="{disableOnSubmit}" liveChange="onLiveChange"/>-->
+								<Input id="idMot" value="{ModeOfTransport}" placeholder="Mode of Transport" showValueHelp="true" valueHelpRequest="onMotF4"
+									liveChange="onLiveChange" valueState="{countryState}" enabled="{disableOnSubmit}"/>
+								<Input id="idProductId" value="{Product}" change="onIBPCustSelectChange" placeholder="Product ID"
+									showValueHelp="true" editable="true" valueHelpRequest="onMatnrF4" enabled="{disableOnSubmit}"/>
+								<ActionSelect id="idTransportConst" selectedKey="{TransportConstkey}" items="{path:'TransportConst/', templateShareable:true}"
+									enabled="{disableOnSubmit}">
+									<core:Item key="{ParamValue}" text="{ParamValue}-{ParamText}"/>
+								</ActionSelect>
+								<Input width="10rem" id="idmaxLotSize" value="{MaxLotSize}" type="Number" placeholder="{i18n>TMAXLOTSIZE}"/>
+								<Input width="10rem" id="idMinLotSize" value="{MinLotSize}" type="Number" placeholder="{i18n>TMINLOTSIZE}"/>
+								<Input width="10rem" id="idRounding" value="{Rounding}" type="Number" placeholder="{i18n>TROUNDING}"/>
+								<Input width="10rem" id="idLeadTime" value="{LeadTime}" type="Number" placeholder="{i18n>TLEADTIME}"/>
+								<!--<Input width="10rem" id="idTLaneOvrd" value="{TlaneOvrd}" type="Number" placeholder="{i18n>ZAPSTLANEOVRD}"/>-->
+								<ActionSelect id="idTLaneOvrd" selectedKey="{TlaneOvrd}" items="{path:'TLaneOverRide/', templateShareable:true}"
+									enabled="{disableOnSubmit}">
+									<core:Item key="{ParamValue}" text="{ParamValue}-{ParamText}"/>
+								</ActionSelect>
+								<Input value="{TransportReceipt}" enabled="{disableOnSubmit}" type="Number" liveChange="onTransportReceiptChange"
+									showValueStateMessage="true" maxLength="2" valueState="Information" valueStateText="2 digits only"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</ScrollContainer>
+			<core:Icon src="sap-icon://add" class="ts_add" press="onAddCorp">
+				<core:layoutData>
+					<FlexItemData growFactor="1"/>
+				</core:layoutData>
+			</core:Icon>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button type="Emphasized" id="idCheck" text="CHECK" visible="false" press="onSimulation"></Button>
+				<Button type="Emphasized" id="Submit" text="SUBMIT" press="onSubmit"></Button>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

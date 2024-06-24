@@ -1,0 +1,422 @@
+<mvc:View controllerName="com.ey.bamlocprdattr.controller.Main" xmlns:fb="sap.ui.comp.filterbar" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:ui="sap.ui.table" xmlns:ci="com.ey.bamlocprdattr.controls" xmlns="sap.m" xmlns:f="sap.f" displayBlock="true"
+	xmlns:core="sap.ui.core">
+	<!--<Shell id="shell">-->
+	<App id="app">
+		<f:DynamicPage id="page" headerExpanded="true">
+			<!--  title="{i18n>Managementtitle}" -->
+			<f:title>
+				<f:DynamicPageTitle visible="false"></f:DynamicPageTitle>
+			</f:title>
+			<f:header>
+				<f:DynamicPageHeader pinnable="false">
+					<f:content>
+						<fb:FilterBar id="locationProduct" header="" search="onSearch" cancel="onCancel" filtersDialogClosed="onFiltersDialogClosed"
+							showClearButton="true" showFilterConfiguration="false">
+							<fb:filterGroupItems>
+								<fb:FilterGroupItem groupName="G1" groupTitle="LocationProduct" name="A" label="Product ID" visibleInFilterBar="true">
+									<fb:control>
+										<ci:MultiInput id="multiPrdLvl" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="CreateProductValueHelp"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+								<fb:FilterGroupItem groupName="G1" groupTitle="LocationProduct" name="B" label="Location ID" visibleInFilterBar="true">
+									<fb:control>
+										<ci:MultiInput id="multiGeoLvl" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="GeographyValueHelp"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+								<fb:FilterGroupItem groupName="G1" groupTitle="LocationProduct" name="C" label="Aggregate Location" visibleInFilterBar="true">
+									<fb:control>
+										<ci:MultiInput id="multiGeoLvl2" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="GeographyValueHelp2"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+								<fb:FilterGroupItem groupName="G1" groupTitle="Material" name="E" label="Old Location ID" visibleInFilterBar="true">
+									<fb:control>
+										<ci:MultiInput id="oldLocationLvl" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="oldLocationValueHelp"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+								<!--<fb:FilterGroupItem groupName="G1" groupTitle="LocationProduct" name="D" label="{i18n>PlanningPlant}" visibleInFilterBar="true">
+									<fb:control>
+										<MultiInput id="planningPlantFilter" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="planningPlantValueHelp"/>
+									</fb:control>
+								</fb:FilterGroupItem>-->
+								<!--<fb:FilterGroupItem groupName="G1" groupTitle="LocationProduct" name="D" label="{i18n>MaxInventoryRel}" visibleInFilterBar="true">-->
+								<!--	<fb:control>-->
+								<!--		<ComboBox id="maxInventoryLvl" items="{oModel>/ZMAXINVENTORYRELEVANT}">-->
+					   <!--              	<core:Item key="{oModel>ParamValue}" text="{oModel>ParamValue} - {oModel>ParamText}"></core:Item>-->
+								<!--		</ComboBox>-->
+								<!--	</fb:control>-->
+								<!--</fb:FilterGroupItem>-->
+							</fb:filterGroupItems>
+						</fb:FilterBar>
+					</f:content>
+				</f:DynamicPageHeader>
+			</f:header>
+			<f:content>
+				<ui:Table id="LocalprodTable" rows="{ path: 'Locationprod>/results'}" selectionMode="MultiToggle" ariaLabelledBy="title"
+					rowSelectionChange="onSelectedItems" visibleRowCountMode="Auto">
+					<ui:extension>
+						<OverflowToolbar>
+							<ToolbarSpacer/>
+							<SearchField width="auto" search="handleFilter" placeholder="Search for any field"/>
+							<OverflowToolbarButton icon="sap-icon://sort" press="handleViewSettingsDialogButtonPressed"/>
+							<!--<Button id="createButton" text="{i18n>Create}" press="onCreate" icon="sap-icon://create"/>-->
+							<Button id="editButton" text="{i18n>Edit}" press="onEdit" icon="sap-icon://edit"/>
+							<Button text="{i18n>Display}" icon="sap-icon://table-view" press="onDisplay"/>
+							<Button icon="sap-icon://action-settings" press="onPersoButtonPressed"/>
+							<Button icon="sap-icon://excel-attachment" press="onDataExport"/>
+						</OverflowToolbar>
+						<FacetFilter id="locationProdFilter" type="Light" showReset="true" showPersonalization="true" reset="handleFacetFilterReset"
+							lists="{Locationprod>/filters}">
+							<lists>
+								<FacetFilterList title="{Locationprod>type}" key="{Locationprod>key}" multiSelect="true" tooltip="Click to apply filter"
+									listClose="handleListClose" items="{path: 'Locationprod>values', templateShareable: true}">
+									<items>
+										<FacetFilterItem text="{Locationprod>text}" key="{Locationprod>text}" count="{Locationprod>data}"/>
+									</items>
+								</FacetFilterList>
+							</lists>
+						</FacetFilter>
+					</ui:extension>
+					<ui:columns>
+						<ui:Column width="20rem" id="LocationID">
+							<Label text="{i18n>LocationID}"/>
+							<ui:template>
+								<Text text="{Locationprod>Locno}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="20rem" id="ProductID">
+							<Label text="{i18n>ProductID}"/>
+							<ui:template>
+								<Text text="{Locationprod>Matnr}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="MasterScheduler">
+							<Label text="{i18n>MasterScheduler}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zmastscheduler}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="DeploymentPlanner">
+							<Label text="{i18n>DeploymentPlanner}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zdeploymentplanner}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ZPRODSCHEDULER">
+							<Label text="{i18n>ZPRODSCHEDULER}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zprodscheduler}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ZMATERIALPLANNER">
+							<Label text="{i18n>ZMATERIALPLANNER}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zmaterialplanner}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ProductionFrozenZone">
+							<Label text="{i18n>ProductionFrozenZone}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zfrozenhorizon}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="PurchaseConstraint">
+							<Label text="{i18n>PurchaseConstraint}"/>
+							<ui:template>
+								<Text text="{Locationprod>Ztechallocation}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ApsPurchaseConstraint">
+							<Label text="{i18n>ApsPurchaseConstraint}"/>
+							<ui:template>
+								<Text text="{Locationprod>ZtechallocationAps}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ProductionConstraint">
+							<Label text="{i18n>ProductionConstraint}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zformallocation}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ApsProductionConstraint">
+							<Label text="{i18n>ApsProductionConstraint}"/>
+							<ui:template>
+								<Text text="{Locationprod>ZformallocationAps}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ProductPriority">
+							<Label text="{i18n>ProductPriority}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zprodpriorityweightage}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ForecastRelevant">
+							<Label text="{i18n>ForecastRelevant}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zforecastrelevant}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ForecastRolRelevant">
+							<Label text="{i18n>ForecastRollRel}"/>
+							<ui:template>
+								<Text text="{Locationprod>ZforecastRollRel}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="BomRelevancy">
+							<Label text="{i18n>BOMRelevancy}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zbomerel}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<!--<ui:Column visible="false" width="12rem" id="planningStrategy">-->
+						<!--	<Label text="{i18n>PlanningStrategy}"/>-->
+						<!--	<ui:template>-->
+						<!--		<Text text="{Locationprod>Zplanningstrategy}" wrapping="false"/>-->
+						<!--	</ui:template>-->
+						<!--</ui:Column>-->
+						<ui:Column width="12rem" id="InventoryChannelStrategy">
+							<Label text="{i18n>InventoryChannelStrategy}"/>
+							<ui:template>
+								<Text text="{Locationprod>Ziochannelstrategy}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="TargetStockLevelMethod">
+							<Label text="{i18n>TargetStockLevelMethod}"/>
+							<ui:template>
+								<Text text="{Locationprod>Ztargetstocktype}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="SafetyStockMethod">
+							<Label text="{i18n>SafetyStockMethod}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zsafetystocktype}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="StaticSafetyStockQuantity">
+							<Label text="{i18n>StaticSafetyStockQuantity}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zsafetystockquantity}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="RelativePercentageStaticSafetyStock">
+							<Label text="{i18n>RelativePercentageStaticSafetyStock}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zrelativepercentage}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="WFCSupplyMethod">
+							<Label text="{i18n>WFCSupplyMethod}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zweeksofforwardcoverage}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="StaticWFCQuantity">
+							<Label text="{i18n>StaticWFCQuantity}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zwfcquantity}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="WFCDemandMethod">
+							<Label text="{i18n>WFCDemandMethod}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zwfcdemand}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ZMFCRELMODE">
+							<Label text="{i18n>ZMFCRELMODE}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zmfcrelmode}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ZMFCTRGDISAGG">
+							<Label text="{i18n>ZMFCTRGDISAGG}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zmfctrgdisagg}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ForecastRelease">
+							<Label text="{i18n>ForecastRelease}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zdemandplacementwk}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ConsumptionType">
+							<Label text="{i18n>ConsumptionType}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zconsumptiontype}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="15rem" id="ForecastConsumptionMode">
+							<Label text="{i18n>ForecastConsumptionMode}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zfcstconsmode}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ForecastOffsetInMonths">
+							<Label text="{i18n>ForecastOffsetInMonths}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zmonthoffset}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="MinOrderLeadTime">
+							<Label text="{i18n>MinOrderLeadTime}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zminorderleadtime}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="15rem" id="DemandReassignmentParentID">
+							<Label text="{i18n>DemandReassignmentParentID}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zdemreassignparentid}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="20rem" id="AggregateLocation">
+							<Label text="{i18n>AggregateLocation}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zaggloc}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ZFORCASTCONGROUP">
+							<Label text="{i18n>ZFORCASTCONGROUP}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zforcastcongroup}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="16rem" id="StockingNodeTypeIndicator">
+							<Label text="{i18n>StockingNodeTypeIndicator}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zstockingnodetype}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="InventoryHoldingPolicy">
+							<Label text="{i18n>InventoryHoldingPolicy}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zinvholdingpolicy}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="PeriodsBetweenReplenishment">
+							<Label text="{i18n>PeriodsBetweenReplenishment}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zpbr}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="StockingStockPolicyIndicator">
+							<Label text="{i18n>StockingStockPolicyIndicator}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zsafetystockpolicy}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="MpsSubId">
+							<Label text="{i18n>MpsSubId}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zplunitid}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ApsSubId">
+							<Label text="{i18n>ApsSubId}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zapssubnetwork}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="planningPlant">
+							<Label text="{i18n>PlanningPlant}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zplanningplant}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ZUPSIDEREL">
+							<Label text="{i18n>ZUPSIDEREL}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zupsiderel}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ZUBUSS1">
+							<Label text="{i18n>ZUBUSS1}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zubuss1}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ZUBUSS2">
+							<Label text="{i18n>ZUBUSS2}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zubuss2}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ZUBUSS3">
+							<Label text="{i18n>ZUBUSS3}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zubuss3}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ZLEADTIMEPUSHMETHOD">
+							<Label text="{i18n>ZLEADTIMEPUSHMETHOD}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zleadtimepushmethod}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<!--New Changes for Lot Sizing and Target sub period filed -->
+						<ui:Column width="12rem" id="ZLOTSIZING">
+							<Label text="{i18n>LotSizingProcedure}"/>
+							<ui:template>
+								<Text text="{Locationprod>ZLOT_SIZE_PROCEDURE}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="12rem" id="ZTARGETSUBPERIOD">
+							<Label text="{i18n>TargetSubPeriodofSupply}"/>
+							<ui:template>
+								<Text text="{Locationprod>ZTECH_WEEKS}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<!--New Filed Add-27/7/2021-->
+						<ui:Column width="12rem" id="ZSAFETYSTOCKDISAGG">
+							<Label text="{i18n>SafetyStockDisagg}"/>
+							<ui:template>
+								<Text text="{Locationprod>ZSAFETY_STOCK}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<!--End of Changes-->
+							<!--New Filed Added Max Inventory Relevant-->
+						<ui:Column width="12rem" id="ZMAXINVENTORYRELEVANT">
+							<Label text="{i18n>MaxInventoryRel}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zmaxinventoryrelevant}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>
+						<!--End of Changes-->
+						<!--<ui:Column width="20rem" id="OldLocationDesc">-->
+						<!--	<Label text="{i18n>OldLocation}"/>-->
+						<!--	<ui:template>-->
+						<!--		<Text text="{Locationprod>Sort1}" wrapping="false"/>-->
+						<!--	</ui:template>-->
+						<!--</ui:Column>-->
+						<!--<ui:Column width="12rem" id="ExternalRecieptFrozenZone">
+							<Label text="{i18n>ExternalRecieptFrozenZone}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zfrozenhorizonextreceipt}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>-->
+						<!--<ui:Column width="12rem" id="ProductionConstraint">-->
+						<!--	<Label text="{i18n>ProductionConstraint}"/>-->
+						<!--	<ui:template>-->
+						<!--		<Text text="{Locationprod>Zformallocation}" wrapping="false"/>-->
+						<!--	</ui:template>-->
+						<!--</ui:Column>-->
+						<!--<ui:Column width="12rem" id="Ibpsupplyrelevant">
+							<Label text="{i18n>IBPSupplyRelevant}"/>
+							<ui:template>
+								<Text text="{Locationprod>Zibpsupplyrelevant}" wrapping="false"/>
+							</ui:template>
+						</ui:Column>-->
+						<!--<ui:Column width="12rem" id="aggId">-->
+						<!--	<Label text="{i18n>AggIDChangeIndicator}"/>-->
+						<!--	<ui:template>-->
+						<!--		<Text text="{Locationprod>ZaggIdChg}" wrapping="false"/>-->
+						<!--	</ui:template>-->
+						<!--</ui:Column>-->
+					</ui:columns>
+				</ui:Table>
+			</f:content>
+		</f:DynamicPage>
+	</App>
+	<!--</Shell>-->
+</mvc:View>

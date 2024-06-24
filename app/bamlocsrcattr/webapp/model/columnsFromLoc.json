@@ -1,0 +1,12 @@
+{
+	"cols": [
+		{
+			"label": "Ship-From Loc. ID",
+			"template": "Locno_From",
+			"width": "10rem"
+		}, {
+			"label": "Ship-From Loc. Description",
+			"template": "Locfromdesc"
+		}
+	]
+}
